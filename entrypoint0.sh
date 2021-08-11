@@ -96,6 +96,7 @@ else
 fi
 
 sed -e "/^#/d"\
+    -e "s/\${AppName}/${AppName}/g"\
     -e "s/\${PORT}/${PORT}/g"\
     -e "s|\${V2_Path}|${V2_Path}|g"\
     -e "s|\${QR_Path}|${QR_Path}|g"\
