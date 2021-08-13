@@ -145,3 +145,4 @@ cat /etc/nginx/sites-enabled/*
 cat /etc/nginx/nginx.conf
 rm -rf /etc/nginx/sites-enabled/*
 #echo "nginx -g 'daemon off;'"
+echo "USE entrypoint0.sh from GITHUB"
