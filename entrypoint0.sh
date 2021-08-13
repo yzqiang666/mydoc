@@ -84,14 +84,17 @@ sed -e "/^#/d"\
     
 [ ! "${NGINX_CONF_URL}" == "" ] && wget -O download1.tmp "$NGINX_CONF_URL"
 if [ -s download1.tmp ] && wget -O download1.tmp "$NGINX_CONF_URL"
-if [ -s download1.tmp ] && [ ! "`grep \"worker_processes\" download1.tmp`" == "" ] ; then
-  cp download1.tmp /tmp/nginx.conf
-  echo "Download from url ${NGINX_CONF_URL} file success." 
+  if [ -s download1.tmp ] && [ ! "`grep \"worker_processes\" download1.tmp`" == "" ] ; then
+    cp download1.tmp /tmp/nginx.conf
+    echo "Download from url ${NGINX_CONF_URL} file success." 
+  else
+    cp /etc/nginx/nginx.conf /tmp/nginx.conf
+    echo "Download from url ${NGINX_CONF_URL} file failed." 
+　fi
 else
-  cp /etc/nginx/nginx.conf /tmp/nginx.conf
-  echo "Use default nginx.conf."
+    cp /etc/nginx/nginx.conf /tmp/nginx.conf
+    echo "Use default nginx.conf."
 fi
-
 
 #echo =====================================================================
 #echo 下载地址：${NGINX_CONF_URL}
@@ -127,5 +130,5 @@ echo "Use entrypoint0.sh from GITHUB"
 echo "Use entrypoint0.sh from GITHUB"
 echo "Use entrypoint0.sh from GITHUB"
 echo "Use entrypoint0.sh from GITHUB"
-#cat /tmp/nginx.conf
+cat /tmp/nginx.conf
 exit 0
