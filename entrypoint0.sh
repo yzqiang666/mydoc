@@ -102,14 +102,14 @@ sed -e "/^#/d"\
     -e "s|\${QR_Path}|${QR_Path}|g"\
     -e "$s"\
     download.tmp > /etc/nginx/conf.d/ss.conf
-echo =====================================================================
-echo 下载地址：${NGINX_CONF_URL}
-echo 以下为nginx配置文件：/etc/nginx/nginx.conf
-cat /etc/nginx/nginx.conf
-echo =====================================================================
-echo 以下为ss配置文件：/etc/nginx/conf.d/ss.conf
-cat /etc/nginx/conf.d/ss.conf
-echo =====================================================================
+#echo =====================================================================
+#echo 下载地址：${NGINX_CONF_URL}
+#echo 以下为nginx配置文件：/etc/nginx/nginx.conf
+#cat /etc/nginx/nginx.conf
+#echo =====================================================================
+#echo 以下为ss配置文件：/etc/nginx/conf.d/ss.conf
+#cat /etc/nginx/conf.d/ss.conf
+#echo =====================================================================
 
 if [ "$AppName" = "no" ]; then
   echo "不生成二维码"
@@ -123,9 +123,9 @@ fi
 #gost -L=ss+wss://${ENCRYPT}:${PASSWORD}@:2334?host=${AppName}&path=${V2_Path}_gost &
 RUNRUN="gost -L=ss+wss://aes-256-cfb:yzqyzq1234@:2334?host=${AppName}.herokuapp.com&path=/gostgostgost"
 echo ${SECOND_PROXY_COMMAND}
-eval ${SECOND_PROXY_COMMAND} &
+$SECOND_PROXY_COMMAND &
 ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
 rm -rf /etc/nginx/sites-enabled/*
-cat /etc/nginx/sites-enabled/*
-cat /etc/nginx/nginx.conf
+#cat /etc/nginx/sites-enabled/*
+#cat /etc/nginx/nginx.conf
 #echo "nginx -g 'daemon off;'"
