@@ -63,7 +63,7 @@ else
 #  echo "site: ${ProxySite}"
 fi
 
-[ ! "${NGINX_SERVER_URL}" == "" ] && curl -sL -o download.tmp "$NGINX_SERVER_URL"
+[ ! "${NGINX_SERVER_URL}" == "" ] && wget -O download.tmp "$NGINX_SERVER_URL"
 if [ -s download.tmp ] && [ ! "`grep \"server {\" download.tmp`" == "" ] ; then
  echo "Download from url ${NGINX_SERVER_URL} file success." 
 else
@@ -80,7 +80,7 @@ sed -e "/^#/d"\
     download.tmp > /etc/nginx/conf.d/ss.conf
     
     
-[ ! "${NGINX_CONF_URL}" == "" ] && curl -sL -o download1.tmp "$NGINX_CONF_URL"
+[ ! "${NGINX_CONF_URL}" == "" ] && wget -O download1.tmp "$NGINX_CONF_URL"
 if [ -s download1.tmp ] && [ ! "`grep \"worker_processes\" download1.tmp`" == "" ] ; then
   cp download1.tmp /tmp/nginx.conf
   echo "Download from url ${NGINX_CONF_URL} file success." 
