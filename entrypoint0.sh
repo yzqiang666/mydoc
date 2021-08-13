@@ -38,27 +38,6 @@ if [[ -z "${QR_Path}" ]]; then
   QR_Path="/qr_img"
 fi
 
-
-
-#if [ "$VER" = "latest" ]; then
-#  V_VER=`wget -qO- "https://api.github.com/repos/shadowsocks/v2ray-plugin/releases/latest" | sed -n -r -e 's/.*"tag_name".+?"([vV0-9\.]+?)".*/\1/p'`
-#  [[ -z "${V_VER}" ]] && V_VER="v1.3.0"
-#else
-#  V_VER="v$VER"
-#fi
-
-#mkdir /v2raybin
-#cd /v2raybin
-#V2RAY_URL="https://github.com/shadowsocks/v2ray-plugin/releases/download/${V_VER}/v2ray-plugin-linux-amd64-${V_VER}.tar.gz"
-#wget --no-check-certificate ${V2RAY_URL}
-#tar -zxvf v2ray-plugin-linux-amd64-$V_VER.tar.gz
-#rm -rf v2ray-plugin-linux-amd64-$V_VER.tar.gz
-#mv v2ray-plugin_linux_amd64 /usr/bin/v2ray-plugin
-#rm -rf /v2raybin
-
-
-
-
 cd /wwwroot
 tar xvf wwwroot.tar.gz
 rm -rf wwwroot.tar.gz
@@ -76,9 +55,6 @@ sed -e "/^#/d"\
     -e "s|\${V2_Path}|${V2_Path}|g"\
     /conf/shadowsocks-libev_config.json >  /etc/shadowsocks-libev/config.json
 
-cat /etc/shadowsocks-libev/config.json
-
-
 if [[ -z "${ProxySite}" ]]; then
   s="s/proxy_pass/#proxy_pass/g"
   echo "site:use local wwwroot html"
@@ -87,7 +63,7 @@ else
   echo "site: ${ProxySite}"
 fi
 
-#[ ! "${NGINX_CONF_URL}" == "" ] && wget --no-check-certificate  -O download.tmp "$NGINX_CONF_URL"
+
 [ ! "${NGINX_SERVER_URL}" == "" ] && curl -sL -o download.tmp "$NGINX_SERVER_URL"
 if [ -s download.tmp ] && [ ! "`grep \"server {\" download.tmp`" == "" ] ; then
  echo "Download from url ${NGINX_SERVER_URL} file success." 
@@ -108,20 +84,20 @@ sed -e "/^#/d"\
 [ ! "${NGINX_CONF_URL}" == "" ] && curl -sL -o download1.tmp "$NGINX_CONF_URL"
 if [ -s download1.tmp ] && [ ! "`grep \"worker_processes\" download1.tmp`" == "" ] ; then
   cp download1.tmp /etc/nginx/nginx.conf
- echo "Download from url ${NGINX_CONF_URL} file success." 
+  echo "Download from url ${NGINX_CONF_URL} file success." 
 else
   echo "Use default nginx.conf."
 fi
 
 
-echo =====================================================================
-echo 下载地址：${NGINX_CONF_URL}
-echo 以下为nginx配置文件：/etc/nginx/nginx.conf
-cat /etc/nginx/nginx.conf
-echo =====================================================================
-echo 以下为ss配置文件：/etc/nginx/conf.d/ss.conf
-cat /etc/nginx/conf.d/ss.conf
-echo =====================================================================
+#echo =====================================================================
+#echo 下载地址：${NGINX_CONF_URL}
+#echo 以下为nginx配置文件：/etc/nginx/nginx.conf
+#cat /etc/nginx/nginx.conf
+#echo =====================================================================
+#echo 以下为ss配置文件：/etc/nginx/conf.d/ss.conf
+#cat /etc/nginx/conf.d/ss.conf
+#echo =====================================================================
 
 if [ "$AppName" = "no" ]; then
   echo "不生成二维码"
@@ -132,15 +108,15 @@ else
   echo "${ss}" | tr -d '\n' > /wwwroot/${QR_Path}/index.html
   echo -n "${ss}" | qrencode -s 6 -o /wwwroot/${QR_Path}/v2.png
 fi
-rm -rf /etc/nginx/sites-enabled/*
+rm -rf /etc/nginx/sites-enabled/* >/dev/null 2>/dev/null
 #gost -L=ss+wss://${ENCRYPT}:${PASSWORD}@:2334?host=${AppName}&path=${V2_Path}_gost &
 #RUNRUN="gost -L=ss+wss://aes-256-cfb:yzqyzq1234@:2334?host=${AppName}.herokuapp.com&path=/gostgostgost"
-if [ "${SECOND_PROXY_COMMAND}" == "" ] ; then
-  echo ${SECOND_PROXY_COMMAND}
-  $SECOND_PROXY_COMMAND &
-fi
+#if [ "${SECOND_PROXY_COMMAND}" == "" ] ; then
+#  echo ${SECOND_PROXY_COMMAND}
+#  $SECOND_PROXY_COMMAND &
+#fi
 ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
 
 rm -rf /etc/nginx/sites-enabled/*
 #echo "nginx -g 'daemon off;'"
-echo "USE entrypoint0.sh from GITHUB"
+
