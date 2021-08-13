@@ -120,12 +120,15 @@ else
   echo "${ss}" | tr -d '\n' > /wwwroot/${QR_Path}/index.html
   echo -n "${ss}" | qrencode -s 6 -o /wwwroot/${QR_Path}/v2.png
 fi
-#gost -L=ss+wss://${ENCRYPT}:${PASSWORD}@:2334?host=${AppName}&path=${V2_Path}_gost &
-RUNRUN="gost -L=ss+wss://aes-256-cfb:yzqyzq1234@:2334?host=${AppName}.herokuapp.com&path=/gostgostgost"
-echo ${SECOND_PROXY_COMMAND}
-$SECOND_PROXY_COMMAND &
-ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
 rm -rf /etc/nginx/sites-enabled/*
+#gost -L=ss+wss://${ENCRYPT}:${PASSWORD}@:2334?host=${AppName}&path=${V2_Path}_gost &
+#RUNRUN="gost -L=ss+wss://aes-256-cfb:yzqyzq1234@:2334?host=${AppName}.herokuapp.com&path=/gostgostgost"
+if [ "${SECOND_PROXY_COMMAND}" == "" ] ; then
+  echo ${SECOND_PROXY_COMMAND}
+  $SECOND_PROXY_COMMAND &
+fi
+ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
+
 #cat /etc/nginx/sites-enabled/*
 #cat /etc/nginx/nginx.conf
 #echo "nginx -g 'daemon off;'"
