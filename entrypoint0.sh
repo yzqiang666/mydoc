@@ -82,9 +82,10 @@ sed -e "/^#/d"\
     
 [ ! "${NGINX_CONF_URL}" == "" ] && curl -sL -o download1.tmp "$NGINX_CONF_URL"
 if [ -s download1.tmp ] && [ ! "`grep \"worker_processes\" download1.tmp`" == "" ] ; then
-  cp download1.tmp /etc/nginx/nginx.conf
+  cp download1.tmp /tmp/nginx.conf
   echo "Download from url ${NGINX_CONF_URL} file success." 
 else
+  cp /etc/nginx/nginx.conf /tmp/nginx.conf
   echo "Use default nginx.conf."
 fi
 
@@ -119,5 +120,5 @@ rm -rf /etc/nginx/sites-enabled/* >/devnull 2>/dev/null
 #echo "nginx -g 'daemon off;'"
 ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
 echo "Use entrypoint0.sh from GITHUB"
-cat /etc/nginx/nginx.conf
+cat /tmp/nginx.conf
 exit 0
