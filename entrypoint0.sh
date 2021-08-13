@@ -120,4 +120,4 @@ rm -rf /etc/nginx/sites-enabled/* >/devnull 2>/dev/null
 echo "Use entrypoint0.sh from GITHUB"
 sleep 5
 ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
-
+exit 0
