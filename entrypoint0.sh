@@ -39,7 +39,7 @@ if [[ -z "${QR_Path}" ]]; then
 fi
 
 cd /wwwroot
-tar xvf wwwroot.tar.gz
+tar xvf wwwroot.tar.gz >/dev/null
 rm -rf wwwroot.tar.gz
 
 if [ ! -d /etc/shadowsocks-libev ]; then  
