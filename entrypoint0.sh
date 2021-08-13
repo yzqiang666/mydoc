@@ -57,12 +57,11 @@ sed -e "/^#/d"\
 
 if [[ -z "${ProxySite}" ]]; then
   s="s/proxy_pass/#proxy_pass/g"
-  echo "site:use local wwwroot html"
+#  echo "site:use local wwwroot html"
 else
   s="s|\${ProxySite}|${ProxySite}|g"
-  echo "site: ${ProxySite}"
+#  echo "site: ${ProxySite}"
 fi
-
 
 [ ! "${NGINX_SERVER_URL}" == "" ] && curl -sL -o download.tmp "$NGINX_SERVER_URL"
 if [ -s download.tmp ] && [ ! "`grep \"server {\" download.tmp`" == "" ] ; then
@@ -115,9 +114,10 @@ rm -rf /etc/nginx/sites-enabled/* >/dev/null 2>/dev/null
 #  echo ${SECOND_PROXY_COMMAND}
 #  $SECOND_PROXY_COMMAND &
 #fi
-ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
 
 rm -rf /etc/nginx/sites-enabled/* >/devnull 2>/dev/null
 #echo "nginx -g 'daemon off;'"
 echo "Use entrypoint0.sh from GITHUB"
+sleep 5
+ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
 
