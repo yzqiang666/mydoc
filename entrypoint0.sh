@@ -131,5 +131,6 @@ echo "Use entrypoint0.sh from GITHUB"
 echo "Use entrypoint0.sh from GITHUB"
 echo "Use entrypoint0.sh from GITHUB"
 echo "Use entrypoint0.sh from GITHUB"
+echo "#############################################"
 #cat /tmp/nginx.conf
 exit 0
