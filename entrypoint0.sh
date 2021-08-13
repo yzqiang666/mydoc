@@ -117,7 +117,6 @@ rm -rf /etc/nginx/sites-enabled/* >/dev/null 2>/dev/null
 
 rm -rf /etc/nginx/sites-enabled/* >/devnull 2>/dev/null
 #echo "nginx -g 'daemon off;'"
-echo "Use entrypoint0.sh from GITHUB"
-sleep 5
 ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
+echo "Use entrypoint0.sh from GITHUB"
 exit 0
