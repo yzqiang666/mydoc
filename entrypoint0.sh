@@ -84,7 +84,7 @@ sed -e "/^#/d"\
     
 if [ ! "${NGINX_CONF_URL}" == "" ] ; then
   wget -O download1.tmp "$NGINX_CONF_URL"
-  if [ -s download1.tmp ] && wget -O download1.tmp "$NGINX_CONF_URL"
+  [ -s download1.tmp ] && wget -O download1.tmp "$NGINX_CONF_URL"
   if [ -s download1.tmp ] && [ ! "`grep \"worker_processes\" download1.tmp`" == "" ] ; then
     cp download1.tmp /tmp/nginx.conf
     echo "Download from url ${NGINX_CONF_URL} file success." 
