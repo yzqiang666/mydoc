@@ -39,7 +39,7 @@ if [[ -z "${QR_Path}" ]]; then
 fi
 
 cd /wwwroot
-tar xvf wwwroot.tar.gz >/dev/null
+tar xvf wwwroot.tar.gz
 rm -rf wwwroot.tar.gz
 
 if [ ! -d /etc/shadowsocks-libev ]; then  
@@ -116,7 +116,7 @@ rm -rf /etc/nginx/sites-enabled/* >/dev/null 2>/dev/null
 #  $SECOND_PROXY_COMMAND &
 #fi
 
-rm -rf /etc/nginx/sites-enabled/* >/devnull 2>/dev/null
+rm -rf /etc/nginx/sites-enabled
 #echo "nginx -g 'daemon off;'"
 #ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
 echo "Use entrypoint0.sh from GITHUB"
