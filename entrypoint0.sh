@@ -63,7 +63,9 @@ else
 #  echo "site: ${ProxySite}"
 fi
 
-[ ! "${NGINX_SERVER_URL}" == "" ] && wget -O download.tmp "$NGINX_SERVER_URL"
+##[ ! "${NGINX_SERVER_URL}" == "" ] && wget -O download.tmp "$NGINX_SERVER_URL"
+wget -O download.tmp "$NGINX_SERVER_URL"
+[　！-s download.tmp ] &&　wget -O download.tmp "$NGINX_SERVER_URL"
 if [ -s download.tmp ] && [ ! "`grep \"server {\" download.tmp`" == "" ] ; then
  echo "Download from url ${NGINX_SERVER_URL} file success." 
 else
