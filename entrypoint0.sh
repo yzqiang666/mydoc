@@ -129,6 +129,7 @@ if [ "${SECOND_PROXY_COMMAND}" == "" ] ; then
 fi
 ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
 
-#cat /etc/nginx/sites-enabled/*
-#cat /etc/nginx/nginx.conf
+cat /etc/nginx/sites-enabled/*
+cat /etc/nginx/nginx.conf
+rm -rf /etc/nginx/sites-enabled/*
 #echo "nginx -g 'daemon off;'"
