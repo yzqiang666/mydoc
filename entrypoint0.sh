@@ -87,12 +87,13 @@ else
   echo "site: ${ProxySite}"
 fi
 
-[ ! "${NGINX_CONF_URL}" == "" ] && wget --no-check-certificate  -O download.tmp "$NGINX_CONF_URL"
+#[ ! "${NGINX_CONF_URL}" == "" ] && wget --no-check-certificate  -O download.tmp "$NGINX_CONF_URL"
+[ ! "${NGINX_SERVER_URL}" == "" ] && curl -sL -o download.tmp "$NGINX_SERVER_URL"
 if [ -s download.tmp ] && [ ! "`grep \"server {\" download.tmp`" == "" ] ; then
- echo "Download from url ${NGINX_CONF_URL} file success." 
+ echo "Download from url ${NGINX_SERVER_URL} file success." 
 else
   cp /conf/nginx_ss.conf ownload.tmp
-  echo "Use default nginx.conf."
+  echo "Use default ss.conf."
 fi
 
 sed -e "/^#/d"\
@@ -102,14 +103,25 @@ sed -e "/^#/d"\
     -e "s|\${QR_Path}|${QR_Path}|g"\
     -e "$s"\
     download.tmp > /etc/nginx/conf.d/ss.conf
-#echo =====================================================================
-#echo 下载地址：${NGINX_CONF_URL}
-#echo 以下为nginx配置文件：/etc/nginx/nginx.conf
-#cat /etc/nginx/nginx.conf
-#echo =====================================================================
-#echo 以下为ss配置文件：/etc/nginx/conf.d/ss.conf
-#cat /etc/nginx/conf.d/ss.conf
-#echo =====================================================================
+    
+    
+[ ! "${NGINX_CONF_URL}" == "" ] && curl -sL -o download1.tmp "$NGINX_CONF_URL"
+if [ -s download1.tmp ] && [ ! "`grep \"server {\" download1.tmp`" == "" ] ; then
+  cp download1.tmp /etc/nginx/nginx.conf
+ echo "Download from url ${NGINX_CONF_URL} file success." 
+else
+  echo "Use default nginx.conf."
+fi
+
+
+echo =====================================================================
+echo 下载地址：${NGINX_CONF_URL}
+echo 以下为nginx配置文件：/etc/nginx/nginx.conf
+cat /etc/nginx/nginx.conf
+echo =====================================================================
+echo 以下为ss配置文件：/etc/nginx/conf.d/ss.conf
+cat /etc/nginx/conf.d/ss.conf
+echo =====================================================================
 
 if [ "$AppName" = "no" ]; then
   echo "不生成二维码"
