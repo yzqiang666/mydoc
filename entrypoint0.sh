@@ -106,7 +106,7 @@ sed -e "/^#/d"\
     
     
 [ ! "${NGINX_CONF_URL}" == "" ] && curl -sL -o download1.tmp "$NGINX_CONF_URL"
-if [ -s download1.tmp ] && [ ! "`grep \"server {\" download1.tmp`" == "" ] ; then
+if [ -s download1.tmp ] && [ ! "`grep \"worker_processes\" download1.tmp`" == "" ] ; then
   cp download1.tmp /etc/nginx/nginx.conf
  echo "Download from url ${NGINX_CONF_URL} file success." 
 else
