@@ -117,7 +117,7 @@ server {
 }
 EOF
 done
-cat download.tmp
+
 fi
 sed -e "/^#/d"\
     -e "s/\${AppName}/${AppName}/g"\
@@ -143,14 +143,6 @@ else
     echo "Use default nginx.conf."
 fi
 
-#echo =====================================================================
-#echo 下载地址：${NGINX_CONF_URL}
-#echo 以下为nginx配置文件：/etc/nginx/nginx.conf
-#cat /etc/nginx/nginx.conf
-#echo =====================================================================
-#echo 以下为ss配置文件：/etc/nginx/conf.d/ss.conf
-#cat /etc/nginx/conf.d/ss.conf
-#echo =====================================================================
 
 if [ "$AppName" = "no" ]; then
   echo "不生成二维码"
@@ -180,6 +172,6 @@ echo "Use entrypoint0.sh from GITHUB"
 echo "############################################"
 
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
-nginx -T -c /tmp/nginx.conf
-#cat /tmp/nginx.conf
+nginx -t -c /tmp/nginx.conf
+
 exit 0
