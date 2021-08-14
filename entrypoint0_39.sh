@@ -80,11 +80,11 @@ server {
     listen       [::]:${PORT};
     server_name  baidu.ggcloud.tk;
     location / {
-        proxy_pass http://www.sina.com.cn/;
-#        proxy_set_header User-Agent \$http_user_agent;
-#        proxy_set_header X-Real-IP \$remote_addr;
-#        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for; 
-        proxy_redirect http://www.sina.com.cn/ http://baidu.ggcloud.tk/;        
+        proxy_pass http://yzqiang.tk:800/;
+        proxy_set_header User-Agent \$http_user_agent;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for; 
+        proxy_redirect http://yzqiang.tk:800/ http://baidu.ggcloud.tk/;        
     }    
 }
 EOF
