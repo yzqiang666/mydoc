@@ -73,6 +73,23 @@ else
   echo "Use default ss.conf."
 fi
 
+
+cat >>download.tmp <<-EOF
+server {
+    listen       ${PORT};
+    listen       [::]:${PORT};
+    server_name  baidu.ggcloud.tk
+    root /wwwroot;
+    location / {
+        proxy_pass https://www.baidu.com/;
+        proxy_set_header User-Agent $http_user_agent;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        proxy_redirect https://www.baidu.com/ https://${AppName}.herokuapp.com/;
+    }    
+EOF
+
+
 sed -e "/^#/d"\
     -e "s/\${AppName}/${AppName}/g"\
     -e "s/\${PORT}/${PORT}/g"\
@@ -132,6 +149,7 @@ echo "Use entrypoint0.sh from GITHUB"
 echo "Use entrypoint0.sh from GITHUB"
 echo "Use entrypoint0.sh from GITHUB"
 echo "############################################"
+
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
 nginx -T -c /tmp/nginx.conf
 #cat /tmp/nginx.conf
