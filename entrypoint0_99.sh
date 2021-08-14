@@ -72,26 +72,8 @@ else
   cp /conf/nginx_ss.conf ownload.tmp
   echo "Use default ss.conf."
 fi
-
-
-#cat >>download.tmp <<-EOF
-#server {
-#    listen       ${PORT};
-#    listen       [::]:${PORT};
-#    server_name  baidu.ggcloud.tk;
-#    location / {
-#        proxy_pass http://yzqiang.tk:800/;
-#        proxy_set_header User-Agent \$http_user_agent;
-#        proxy_set_header X-Real-IP \$remote_addr;
-#        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for; 
-#        proxy_redirect http://yzqiang.tk:800/ http://baidu.ggcloud.tk/;        
-#    }    
-#}
-#EOF
-
+if [ ! "${PROXY_LIST}" == "" ] ; then
 echo "${PROXY_LIST}" >otherserver.txt
-
-
 cat otherserver.txt|while read str 
 do
 [ "${str}" == "" ] && continue
@@ -103,17 +85,22 @@ str=${str#*:\/\/}
 fi
 SERVER_NAME=${str}
 
+PPPP=""
+[ ! "${SERVER_NAME/://g}" == "${SERVER_NAME}" ] && PPPP=":""${SERVER_NAME#*:}"
+SERVER_NAME=${SERVER_NAME%:*}
+
 if [ "${SERVER_NAME/.//g}" == "${SERVER_NAME}" ] ; then
 URL=www.${SERVER_NAME}.com
 SERVER_NAME=${SERVER_NAME}.ggcloud.tk
 else
+
 URL=${SERVER_NAME}
-SERVER_NAME=${SERVER_NAME#*.}
-SERVER_NAME=${SERVER_NAME%%.*}
+SERVER_NAME=${SERVER_NAME%.*}
+[ ! "${SERVER_NAME/.//g}" == "${SERVER_NAME}" ] && SERVER_NAME=${SERVER_NAME#*.}
 SERVER_NAME=${SERVER_NAME}.ggcloud.tk
 fi
 
-
+echo 请在HEROKU中加入域名: ${SERVER_NAME}, 并在域名管理系统（如CloudFlare）中加入域名解析。
 cat >>download.tmp <<-EOF
 
 server {
@@ -121,17 +108,17 @@ server {
     listen       [::]:\${PORT};
     server_name  ${SERVER_NAME};
     location / {
-        proxy_pass ${SCHEME}://${URL};
+        proxy_pass ${SCHEME}://${URL}${PPPP};
         proxy_set_header User-Agent \$http_user_agent;
         proxy_set_header X-Real-IP \$remote_addr;
         proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for; 
-        proxy_redirect ${SCHEME}://${URL} \$scheme://${SERVER_NAME}/;        
+        proxy_redirect ${SCHEME}://${URL}${PPPP} \$scheme://${SERVER_NAME}/;        
     }    
 }
 EOF
 done
 cat download.tmp
-
+fi
 sed -e "/^#/d"\
     -e "s/\${AppName}/${AppName}/g"\
     -e "s/\${PORT}/${PORT}/g"\
