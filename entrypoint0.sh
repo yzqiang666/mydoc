@@ -78,7 +78,7 @@ cat >>download.tmp <<-EOF
 server {
     listen       ${PORT};
     listen       [::]:${PORT};
-    server_name  baidu.ggcloud.tk
+    server_name  baidu.ggcloud.tk;
     root /wwwroot;
     location / {
         proxy_pass https://www.baidu.com/;
