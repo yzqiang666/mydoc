@@ -82,10 +82,11 @@ server {
     location / {
         index  index.html index.htm index.jsp;
         proxy_pass https://www.baidu.com/;
-#        proxy_set_header User-Agent $http_user_agent;
-#        proxy_set_header X-Real-IP $remote_addr;
-#        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
-#        proxy_redirect https://www.baidu.com/ https://${AppName}.herokuapp.com/;
+        proxy_set_header User-Agent $http_user_agent;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        proxy_redirect https://www.baidu.com/ https://baidu.ggcloud.tk/;
+        
     }    
 }
 EOF
