@@ -89,7 +89,10 @@ fi
 #}
 #EOF
 
-echo "${PROXY_LIST}"|while read str 
+echo "${PROXY_LIST}" >otherserver.txt
+
+
+cat otherserver.txt|while read str 
 do
 [ "${str}" == "" ] && continue
 if [ "${str/:\/\///g}" == "${str}" ] ; then
@@ -109,6 +112,25 @@ SERVER_NAME=${SERVER_NAME#*.}
 SERVER_NAME=${SERVER_NAME%%.*}
 SERVER_NAME=${SERVER_NAME}.ggcloud.tk
 fi
+
+
+cat >>download.tmp <<-EOF
+
+server {
+    listen       \${PORT};
+    listen       [::]:\${PORT};
+    server_name  ${SERVER_NAME};
+    location / {
+        proxy_pass ${SCHEME}://${URL};
+        proxy_set_header User-Agent \$http_user_agent;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for; 
+        proxy_redirect ${SCHEME}://${URL} \$scheme://${SERVER_NAME}/;        
+    }    
+}
+EOF
+done
+cat download.tmp
 
 
 cat >>download.tmp <<-EOF
