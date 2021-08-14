@@ -79,8 +79,8 @@ server {
     listen       ${PORT};
     listen       [::]:${PORT};
     server_name  baidu.ggcloud.tk;
-    root /wwwroot;
     location / {
+        index  index.html index.htm index.jsp;
         proxy_pass https://www.baidu.com/;
         proxy_set_header User-Agent $http_user_agent;
         proxy_set_header X-Real-IP $remote_addr;
