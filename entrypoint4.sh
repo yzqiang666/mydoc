@@ -151,6 +151,28 @@ echo "Use entrypoint0.sh from GITHUB"
 echo "Use entrypoint0.sh from GITHUB"
 echo "############################################"
 
+rclone version
+rclone listremotes
+
+mkdir -p /.config/rclone
+
+echo "$RCLONE_INFO" >>'/.config/rclone/rclone.conf'
+rclone version
+rclone listremotes
+UU=""
+[  "$CLOUDPATH" == "none" ] && CLOUDPATH=""
+[  "$USER" == "none" ] && USER=""
+[  "$PASSWORD" == "none" ] && PASSWORD=""
+[ ! "$USER" == "" ] && UU=$UU" --user $USER"
+[ ! "$PASSWORD" == "" ] && UU=$UU" --pass $PASSWORD"
+[  "$CLOUDNAME" == "none" ] && CLOUDNAME=""
+if [  "$CLOUDNAME" == "" ] ; then
+  CLOUDNAME=`rclone listremotes|head -n 1`
+else
+  CLOUDNAME=$CLOUDNAME":"
+fi
+rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :18888 $UU  $RCLONE_ARGUMENT &
+
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
 nginx -T -c /tmp/nginx.conf
 #cat /tmp/nginx.conf
