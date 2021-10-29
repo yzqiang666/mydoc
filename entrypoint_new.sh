@@ -177,6 +177,6 @@ rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
 #gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost" &
 
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
-nginx -t -c /tmp/nginx.conf
+nginx -T -c /tmp/nginx.conf
 #cat /tmp/nginx.conf
 exit 0
