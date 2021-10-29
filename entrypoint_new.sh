@@ -169,7 +169,7 @@ else
   CLOUDNAME=$CLOUDNAME":"
 fi
 echo rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT
-rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :2332 $UU  $RCLONE_ARGUMENT &
+rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT &
 
 
 echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost"
