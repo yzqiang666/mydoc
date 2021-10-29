@@ -163,20 +163,20 @@ rclone version
 rclone listremotes
 UU=""
 [  "$CLOUDPATH" == "none" ] && CLOUDPATH=""
-[  "$USER" == "none" ] && USER=""
-[  "$PASSWORD" == "none" ] && PASSWORD=""
-[ ! "$USER" == "" ] && UU=$UU" --user $USER"
-[ ! "$PASSWORD" == "" ] && UU=$UU" --pass $PASSWORD"
+[  "$USER_RCLONE" == "none" ] && USER=""
+[  "$PASSWORD_RCLONE" == "none" ] && PASSWORD=""
+[ ! "$USER_RCLONE" == "" ] && UU=$UU" --user $USER_RCLONE"
+[ ! "$PASSWORD_RCLONE" == "" ] && UU=$UU" --pass $PASSWORD_RCLONE"
 [  "$CLOUDNAME" == "none" ] && CLOUDNAME=""
 if [  "$CLOUDNAME" == "" ] ; then
   CLOUDNAME=`rclone listremotes|head -n 1`
 else
   CLOUDNAME=$CLOUDNAME":"
 fi
-#rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT &
-rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $RCLONE_ARGUMENT &
+rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT &
+#rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $RCLONE_ARGUMENT &
 
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
-nginx -T -c /tmp/nginx.conf
+nginx -t -c /tmp/nginx.conf
 #cat /tmp/nginx.conf
 exit 0
