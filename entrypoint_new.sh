@@ -173,8 +173,11 @@ if [  "$CLOUDNAME" == "" ] ; then
 else
   CLOUDNAME=$CLOUDNAME":"
 fi
+echo rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT
 rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT &
 #rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $RCLONE_ARGUMENT &
+echo gost  -L=ss+mws://$ENCRYPT:$PASSWORD@:2334
+gost  -L=ss+mws://$ENCRYPT:$PASSWORD@:2334 &
 
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
 nginx -t -c /tmp/nginx.conf
