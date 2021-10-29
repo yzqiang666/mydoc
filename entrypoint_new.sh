@@ -146,11 +146,6 @@ rm -rf /etc/nginx/sites-enabled
 cat /etc/shadowsocks-libev/config.json
 ss-server -c /etc/shadowsocks-libev/config.json &
 #ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
-echo "Use entrypoint0.sh from GITHUB"
-echo "Use entrypoint0.sh from GITHUB"
-echo "Use entrypoint0.sh from GITHUB"
-echo "Use entrypoint0.sh from GITHUB"
-echo "Use entrypoint0.sh from GITHUB"
 echo "############################################"
 
 rclone version
@@ -174,8 +169,8 @@ else
   CLOUDNAME=$CLOUDNAME":"
 fi
 echo rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT
-rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT &
-#rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $RCLONE_ARGUMENT &
+rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :2332 $UU  $RCLONE_ARGUMENT &
+
 
 echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost"
 gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost" &
