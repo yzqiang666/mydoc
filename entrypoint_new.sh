@@ -176,8 +176,9 @@ fi
 echo rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT
 rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT &
 #rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $RCLONE_ARGUMENT &
-echo gost  -L=ss+mws://$ENCRYPT:$PASSWORD@:2334
-gost  -L=ss+mws://$ENCRYPT:$PASSWORD@:2334 &
+ss+mws://chacha20-ietf-poly1305:yzqyzq1234@104.20.135.133:80?host=ss3.yzqiang6.workers.dev&mux=5
+echo gost  -L=ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&mux=5&path=/gost
+gost  -L=ss+mws://chacha20-ietf-poly1305:yzqyzq123@:2334?host=${AppName}.herokuapp.com&mux=5&path=/gost &
 
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
 nginx -t -c /tmp/nginx.conf
