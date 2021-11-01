@@ -185,9 +185,12 @@ echo ==================================================
 cd /app
 wget https://github.com/reruin/sharelist/archive/master.zip -O sharelist.zip
 unzip sharelist.zip
-ls 
+echo ==========  Dir /app =======
+ls -l
 cd /app/sharelist-master
-ls
+echo ==========  Dir /app =======
+ls -l
+echo ====== npm install ==============
 npm install
 mkdir -p /app/sharelist-master/cache
 if echo "$SHARELIST_CONF" | grep -q -i "^http"; then
