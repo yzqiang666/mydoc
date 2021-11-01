@@ -176,7 +176,6 @@ rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
 #echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost"
 #gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost" &
 
-mkdir /app
 cd /app
 
 
@@ -192,8 +191,10 @@ else
   echo -e "$SHARELIST_CONF" > /app/sharelist-master/cache/config.json
 fi
 cat /app/sharelist-master/cache/config.json
+PP=${PORT}
+export PORT=33001
 npm start &
-
+export PORT=${PP}
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
 nginx -T -c /tmp/nginx.conf
 #cat /tmp/nginx.conf
