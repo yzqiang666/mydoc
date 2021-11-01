@@ -176,13 +176,18 @@ rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
 #echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost"
 #gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost" &
 
+
+cp /tmp/nginx.conf /etc/nginx/nginx.conf
+nginx -t -c /tmp/nginx.conf
+#cat /tmp/nginx.conf
+
+echo ==================================================
 cd /app
-
-
 wget https://github.com/reruin/sharelist/archive/master.zip -O sharelist.zip
 unzip sharelist.zip
-
+ls 
 cd /app/sharelist-master
+ls
 npm install
 mkdir -p /app/sharelist-master/cache
 if echo "$SHARELIST_CONF" | grep -q -i "^http"; then
@@ -190,12 +195,13 @@ if echo "$SHARELIST_CONF" | grep -q -i "^http"; then
 else
   echo -e "$SHARELIST_CONF" > /app/sharelist-master/cache/config.json
 fi
+
 cat /app/sharelist-master/cache/config.json
 PP=${PORT}
 export PORT=33001
 npm start &
 export PORT=${PP}
-cp /tmp/nginx.conf /etc/nginx/nginx.conf
-nginx -T -c /tmp/nginx.conf
-#cat /tmp/nginx.conf
+echo ==================================================
+
+
 exit 0
