@@ -198,7 +198,7 @@ npm install n -g
 n stable
 PATH="$PATH"
 node -v
-npm start &
+#npm start &
 #/usr/local/bin/node app.js &
 export PORT=${PP}
 echo ================= finish sharelist =================================
