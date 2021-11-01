@@ -181,24 +181,13 @@ cp /tmp/nginx.conf /etc/nginx/nginx.conf
 nginx -t -c /tmp/nginx.conf
 #cat /tmp/nginx.conf
 
-echo ==================================================
-cd /app
-wget https://github.com/reruin/sharelist/archive/master.zip -O sharelist.zip
-unzip sharelist.zip
-echo ==========  Dir /app =======
-ls -l
+
 cd /app/sharelist-master
-echo ==========  Dir /app =======
-ls -l
-echo ====== npm install ==============
-npm install
-mkdir -p /app/sharelist-master/cache
 if echo "$SHARELIST_CONF" | grep -q -i "^http"; then
   wget --no-check-certificate $SHARELIST_CONF -O /app/sharelist-master/cache/config.json
 else
   echo -e "$SHARELIST_CONF" > /app/sharelist-master/cache/config.json
 fi
-
 cat /app/sharelist-master/cache/config.json
 PP=${PORT}
 export PORT=33001
