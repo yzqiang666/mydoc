@@ -194,8 +194,8 @@ export PORT=33001
 npm config set registry https://registry.npm.taobao.org
 npm install n -g
 n stable
-npm install n -g
-n stable
+#npm install n -g
+#n stable
 PATH="$PATH"
 node -v
 nohup npm start &
