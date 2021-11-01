@@ -196,6 +196,7 @@ npm install n -g
 n stable
 npm install n -g
 n stable
+PATH="$PATH"
 node -v
 npm start &
 export PORT=${PP}
