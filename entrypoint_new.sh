@@ -191,14 +191,15 @@ fi
 cat cache/config.json
 PP=${PORT}
 export PORT=33001
-npm config set registry https://registry.npm.taobao.org
-npm install n -g
-n stable
-npm install n -g
-n stable
-PATH="$PATH"
-node -v
-npm start &
+#npm config set registry https://registry.npm.taobao.org
+#npm install n -g
+#n stable
+#npm install n -g
+#n stable
+#PATH="$PATH"
+#node -v
+#npm start &
+/usr/local/bin/node app.js &
 export PORT=${PP}
 echo ==================================================
 
