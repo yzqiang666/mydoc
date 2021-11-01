@@ -182,13 +182,13 @@ nginx -t -c /tmp/nginx.conf
 #cat /tmp/nginx.conf
 
 
-cd /app/sharelist-master
+cd /app/sharelist
 if echo "$SHARELIST_CONF" | grep -q -i "^http"; then
-  wget --no-check-certificate $SHARELIST_CONF -O /app/sharelist-master/cache/config.json
+  wget --no-check-certificate $SHARELIST_CONF -O cache/config.json
 else
-  echo -e "$SHARELIST_CONF" > /app/sharelist-master/cache/config.json
+  echo -e "$SHARELIST_CONF" > cache/config.json
 fi
-cat /app/sharelist-master/cache/config.json
+cat cache/config.json
 PP=${PORT}
 export PORT=33001
 npm start &
