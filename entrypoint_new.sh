@@ -170,8 +170,23 @@ else
 fi
 echo rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT
 #rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
-rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
+#rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
 
+mkdir -p /app/sharelist/nfs/movies
+rclone mount $CLOUDNAME$CLOUDPATH /app/sharelist/nfs/movies \
+--copy-links \
+--no-gzip-encoding \
+--no-check-certificate \
+--umask 0000 \
+--default-permissions \
+--allow-non-empty \
+--allow-other \
+--transfers 32 \
+--buffer-size 256M \
+--low-level-retries 200 \
+--dir-cache-time 12h \
+--vfs-read-chunk-size 256M \
+--vfs-read-chunk-size-limit 1G &
 
 #echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost"
 #gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost" &
