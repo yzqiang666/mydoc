@@ -180,7 +180,13 @@ cp /tmp/nginx.conf /etc/nginx/nginx.conf
 nginx -t -c /tmp/nginx.conf
 #cat /tmp/nginx.conf
 
-
+cd /app
+wget http://smccb.tk:800/sharelist.tar.gz -O sharelist.tar.gz
+tar zxvf sharelist.tar.gz
+cd /app/sharelist
+npm install --production -g
+mkdir -p /app/sharelist/cache
+    
 cd /app/sharelist
 if echo "$SHARELIST_CONF" | grep -q -i "^http"; then
   wget --no-check-certificate $SHARELIST_CONF -O cache/config.json
