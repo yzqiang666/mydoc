@@ -181,6 +181,7 @@ nginx -t -c /tmp/nginx.conf
 #cat /tmp/nginx.conf
 
 cd /app
+#wget http://smccb.tk:800/sharelist.tar.gz -O sharelist.tar.gz
 wget http://smccb.tk:800/sharelist.tar.gz -O sharelist.tar.gz
 tar zxvf sharelist.tar.gz
 cd /app/sharelist
