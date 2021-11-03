@@ -196,6 +196,7 @@ fi
 cat cache/config.json
 PP=${PORT}
 export PORT=33001
+npm install 
 npm config set registry https://registry.npm.taobao.org
 npm install n -g
 n stable
