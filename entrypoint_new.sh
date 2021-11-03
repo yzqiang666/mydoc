@@ -208,7 +208,7 @@ npm install
 #/usr/local/bin/node app.js &
 sleep 2
 #export PORT=${PP}
-echo ================= finish sharelist =================================
+echo ================= $PORT   finish sharelist =================================
 
 
 exit 0
