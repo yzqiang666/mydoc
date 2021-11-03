@@ -204,7 +204,7 @@ PATH="$PATH"
 node -v
 npm install
 export PORT=33001
-nohup npm start &
+#nohup npm start &
 #/usr/local/bin/node app.js &
 sleep 2
 export PORT=${PP}
