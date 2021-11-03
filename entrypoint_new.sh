@@ -181,7 +181,6 @@ nginx -t -c /tmp/nginx.conf
 #cat /tmp/nginx.conf
 
 cd /app
-#wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.tar.gz -O sharelist.tar.gz
 wget http://smccb.tk:800/sharelist.tar.gz -O sharelist.tar.gz
 tar zxvf sharelist.tar.gz
 cd /app/sharelist
@@ -194,7 +193,7 @@ if echo "$SHARELIST_CONF" | grep -q -i "^http"; then
 else
   echo -e "$SHARELIST_CONF" > cache/config.json
 fi
-#cat cache/config.json
+cat cache/config.json
 PP=${PORT}
 export PORT=33001
 npm config set registry https://registry.npm.taobao.org
