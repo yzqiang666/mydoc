@@ -1,0 +1,90 @@
+{
+	"port": "33001",
+	"proxy_enable": 0,
+	"preview_enable": 1,
+	"index_enable": 1,
+	"webdav_path": "/webdav/",
+	"max_age_dir": 900000,
+	"max_age_file": 300000,
+	"max_age_download": 0,
+	"skin": "default",
+	"ignore_file_extensions": "nfo,srt,ass,vtt",
+	"ignore_files": ".passwd",
+	"readme_enable": 1,
+	"ignore_paths": {
+		"__root__": [
+			""
+		],
+		"lb": []
+	},
+	"max_age_download_sign": "sl_1635864074433",
+	"anonymous_uplod_enable": 0,
+	"anonymous_download": "",
+	"plugin_option": [
+		{
+			"key": "plugin_preview_media___video_previewable_formats",
+			"value": {
+				"value": "mp4,ogg,webm,mpeg,m4v,mkv",
+				"label": "支持预览的视频后缀",
+				"placeholder": "文件扩展名，多个用逗号分隔"
+			}
+		},
+		{
+			"key": "plugin_preview_media___video_previewable_player",
+			"value": {
+				"value": "dplayer",
+				"label": "视频预览播放器",
+				"options": [
+					{
+						"label": "默认",
+						"value": "default"
+					},
+					{
+						"label": "DPlayer",
+						"value": "dplayer"
+					}
+				]
+			}
+		}
+	],
+	"custom_style": "",
+	"custom_script": "<script>\r\nif (document.getElementsByClassName(\"list\").length>0) {\r\n  var x = document.getElementsByClassName(\"list\")[0].children;\r\n  for (var i=x.length-1;i>=0;i--) {\r\n    mimetype=x[i].firstChild.firstChild.firstChild.firstChild.className.substring(6,20);    \r\n    if (mimetype == 'video') {\r\n      href=x[i].firstChild.href.replace('?preview','');\r\n      x[i].firstChild.href='https://nfxhd.com/dp.php/?url='+href;\r\n    }\r\n    if ('|other|image'.indexOf(mimetype)>=0) {\r\n      x[i].remove();\r\n    }\r\n  }\r\n}\r\n\r\n</script>",
+	"proxy_paths": [
+		""
+	],
+	"proxy_server": "",
+	"ocr_server": "https://api.reruin.net/ocr",
+	"token": "yzqyzq1234",
+	"title": "我的云盘",
+	"path": [
+		{
+			"name": "电影",
+			"path": "gda://292963262296-5thesrfcbherqrmedi67g02rocalqv8s.apps.googleusercontent.com/1pqlp0-UC8e-39JNZXfWvlMKjsxxgXFH4?client_secret=oA3CW0ZKEY4aEV3R3i4EnmC-&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&refresh_token=1%2F%2F09clLjFfU313ZCgYIARAAGAkSNwF-L9IrCEKS4x5uCa-vLjYkY0AjgNvQRQ4rXGCQCwgGItLo1sI8DxfiAVxPeqj71foHBKanYRM"
+		},
+		{
+			"name": "电视剧",
+			"path": "gda://292963262296-5thesrfcbherqrmedi67g02rocalqv8s.apps.googleusercontent.com/1NxhUIrIfqYRusNBkCZ2L6aJRlUcTNOoV?client_secret=oA3CW0ZKEY4aEV3R3i4EnmC-&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&refresh_token=1%2F%2F09clLjFfU313ZCgYIARAAGAkSNwF-L9IrCEKS4x5uCa-vLjYkY0AjgNvQRQ4rXGCQCwgGItLo1sI8DxfiAVxPeqj71foHBKanYRM"
+		},
+		{
+			"name": "音乐",
+			"path": "gda://292963262296-5thesrfcbherqrmedi67g02rocalqv8s.apps.googleusercontent.com/1iydXWvnHLCrQ7XsEqZe4o78Qh_izmtzk?client_secret=oA3CW0ZKEY4aEV3R3i4EnmC-&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&refresh_token=1%2F%2F09clLjFfU313ZCgYIARAAGAkSNwF-L9IrCEKS4x5uCa-vLjYkY0AjgNvQRQ4rXGCQCwgGItLo1sI8DxfiAVxPeqj71foHBKanYRM"
+		},
+		{
+			"name": "有声书",
+			"path": "gda://292963262296-5thesrfcbherqrmedi67g02rocalqv8s.apps.googleusercontent.com/1NTojG0ubzc1UGzGqZMv6UVdJ-zpHOlqJ?client_secret=oA3CW0ZKEY4aEV3R3i4EnmC-&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&refresh_token=1%2F%2F09clLjFfU313ZCgYIARAAGAkSNwF-L9IrCEKS4x5uCa-vLjYkY0AjgNvQRQ4rXGCQCwgGItLo1sI8DxfiAVxPeqj71foHBKanYRM"
+		},
+		{
+			"name": "电子书",
+			"path": "gda://292963262296-5thesrfcbherqrmedi67g02rocalqv8s.apps.googleusercontent.com/1OrLBGAdpy8CzKkxjFCy_aYGaXXgKxzjY?client_secret=oA3CW0ZKEY4aEV3R3i4EnmC-&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&refresh_token=1%2F%2F09clLjFfU313ZCgYIARAAGAkSNwF-L9IrCEKS4x5uCa-vLjYkY0AjgNvQRQ4rXGCQCwgGItLo1sI8DxfiAVxPeqj71foHBKanYRM"
+		},
+		{
+			"name": "谈话节目",
+			"path": "gda://292963262296-5thesrfcbherqrmedi67g02rocalqv8s.apps.googleusercontent.com/1bYaM9hUPpTalkAtXlHHEORAxGcSZadDr?client_secret=oA3CW0ZKEY4aEV3R3i4EnmC-&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&refresh_token=1%2F%2F09clLjFfU313ZCgYIARAAGAkSNwF-L9IrCEKS4x5uCa-vLjYkY0AjgNvQRQ4rXGCQCwgGItLo1sI8DxfiAVxPeqj71foHBKanYRM"
+		},
+		{
+			"name": "软件下载",
+			"path": "gda://292963262296-5thesrfcbherqrmedi67g02rocalqv8s.apps.googleusercontent.com///292963262296-5thesrfcbherqrmedi67g02rocalqv8s.apps.googleusercontent.com/1Zocg1Xfaw_Gz8xfLS67hJS4AxVCkCN_w?client_secret=oA3CW0ZKEY4aEV3R3i4EnmC-&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&refresh_token=1%2F%2F09clLjFfU313ZCgYIARAAGAkSNwF-L9IrCEKS4x5uCa-vLjYkY0AjgNvQRQ4rXGCQCwgGItLo1sI8DxfiAVxPeqj71foHBKanYRM?client_secret=oA3CW0ZKEY4aEV3R3i4EnmC-&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&refresh_token=1%2F%2F09clLjFfU313ZCgYIARAAGAkSNwF-L9IrCEKS4x5uCa-vLjYkY0AjgNvQRQ4rXGCQCwgGItLo1sI8DxfiAVxPeqj71foHBKanYRM"
+		}
+	],
+	"language": ""
+}
