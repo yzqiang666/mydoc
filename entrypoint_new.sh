@@ -195,16 +195,16 @@ else
   echo -e "$SHARELIST_CONF" > cache/config.json
 fi
 #cat cache/config.json
-PP=${PORT}
-export PORT=33001
-npm config set registry https://registry.npm.taobao.org
+#npm config set registry https://registry.npm.taobao.org
 npm install n -g
 n stable
 #npm install n -g
 #n stable
+PP=${PORT}
 PATH="$PATH"
 node -v
-#npm install
+npm install
+export PORT=33001
 nohup npm start &
 #/usr/local/bin/node app.js &
 export PORT=${PP}
