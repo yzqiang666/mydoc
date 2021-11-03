@@ -143,7 +143,7 @@ rm -rf /etc/nginx/sites-enabled/* >/dev/null 2>/dev/null
 
 rm -rf /etc/nginx/sites-enabled
 #echo "nginx -g 'daemon off;'"
-cat /etc/shadowsocks-libev/config.json
+#cat /etc/shadowsocks-libev/config.json
 ss-server -c /etc/shadowsocks-libev/config.json &
 #ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
 echo "############################################"
@@ -168,8 +168,8 @@ if [  "$CLOUDNAME" == "" ] ; then
 else
   CLOUDNAME=$CLOUDNAME":"
 fi
-echo rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT
-rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
+#echo rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT
+#rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
 #rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
 
 #echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost"
@@ -195,6 +195,7 @@ else
   echo -e "$SHARELIST_CONF" > cache/config.json
 fi
 #cat cache/config.json
+npm install --production -g
 npm config set registry https://registry.npm.taobao.org
 npm install n -g
 n stable
@@ -202,10 +203,10 @@ PP=${PORT}
 PATH="$PATH"
 node -v
 npm install
-sleep 2
 export PORT=33001
 nohup npm start &
 #/usr/local/bin/node app.js &
+sleep 2
 export PORT=${PP}
 echo ================= finish sharelist =================================
 
