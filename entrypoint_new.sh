@@ -203,6 +203,7 @@ n stable
 #n stable
 PATH="$PATH"
 node -v
+npm install
 nohup npm start &
 #/usr/local/bin/node app.js &
 export PORT=${PP}
