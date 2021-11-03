@@ -185,7 +185,6 @@ cd /app
 wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.tar.gz -O sharelist.tar.gz
 tar zxvf sharelist.tar.gz >/dev/null
 cd /app/sharelist
-npm install --production -g
 mkdir -p /app/sharelist/cache
     
 cd /app/sharelist
@@ -195,18 +194,17 @@ else
   echo -e "$SHARELIST_CONF" > cache/config.json
 fi
 #cat cache/config.json
-npm install --production -g
-npm config set registry https://registry.npm.taobao.org
-npm install n -g
-n stable
-PP=${PORT}
-PATH="$PATH"
-node -v
-npm install
+#npm install --production -g
+#npm config set registry https://registry.npm.taobao.org
+#npm install n -g
+#n stable
+#PP=${PORT}
+#PATH="$PATH"
+#node -v
+#npm install
 #export PORT=33001
 #nohup npm start &
-#/usr/local/bin/node app.js &
-sleep 2
+#sleep 2
 #export PORT=${PP}
 echo ================= $PORT   finish sharelist =================================
 
