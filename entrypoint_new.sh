@@ -193,6 +193,10 @@ if echo "$SHARELIST_CONF" | grep -q -i "^http"; then
 else
   echo -e "$SHARELIST_CONF" > cache/config.json
 fi
+echo ############## begin nginx #########
+  nginx -t -c /tmp/nginx.conf
+  nginx -c /tmp/nginx.conf -g 'daemon off;'
+echo ############## end nginx #########  
 #cat cache/config.json
 #npm install --production -g
 #npm config set registry https://registry.npm.taobao.org
