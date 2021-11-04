@@ -169,7 +169,7 @@ else
   CLOUDNAME=$CLOUDNAME":"
 fi
 #echo rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT
-rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
+#rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
 #rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
 
 #echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost"
@@ -196,17 +196,10 @@ else
 fi
 
 
-#cat cache/config.json
-#npm install --production -g
-#npm config set registry https://registry.npm.taobao.org
-#npm install n -g
-#n stable
-#PATH="$PATH"
 echo =================
 node -v
 echo =================
-#npm install
-#npm audit fix --force
+
 PATH=/usr/local/bin:$PATH
 PP=${PORT}
 export PORT=33001
