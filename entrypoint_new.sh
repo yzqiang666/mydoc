@@ -202,8 +202,15 @@ fi
 #n stable
 #PATH="$PATH"
 #node -v
-#npm install
-#npm audit fix --force
+if [ -s /tmp/nginx.conf ] ; then
+  nginx -t -c /tmp/nginx.conf
+  nginx -c /tmp/nginx.conf -g 'daemon off;'
+else
+  nginx -t
+  nginx -g 'daemon off;'
+fi
+#ech
+
 PATH=/usr/local/bin:$PATH
 PP=${PORT}
 export PORT=33001
