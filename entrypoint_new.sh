@@ -200,8 +200,8 @@ fi
 #n stable
 #PP=${PORT}
 #PATH="$PATH"
-#node -v
-#npm install
+node -v
+npm install
 #export PORT=33001
 #nohup npm start &
 #sleep 2
