@@ -153,7 +153,8 @@ rclone listremotes
 
 mkdir -p /.config/rclone
 
-echo "$RCLONE_INFO" >>'/.config/rclone/rclone.conf'
+echo "$RCLONE_INFO" >>/.config/rclone/rclone.conf
+cat /.config/rclone/rclone.conf
 rclone version
 rclone listremotes
 UU=""
