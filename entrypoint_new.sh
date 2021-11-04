@@ -208,6 +208,7 @@ PATH=/usr/local/bin:$PATH
 PP=${PORT}
 export PORT=33001
 /usr/local/bin/npm install
+/usr/local/bin/npm audit fix --force
 nohup /usr/local/bin/npm start &
 export PORT=${PP}
 echo ================= $PORT   finish sharelist =================================
