@@ -189,7 +189,7 @@ mkdir -p /app/sharelist/cache
     
 cd /app/sharelist
 if echo "$SHARELIST_CONF" | grep -q -i "^http"; then
-  wget --no-check-certificate $SHARELIST_CONF -O cache/config.json
+  wget --no-check-certificate $SHARELIST_CONF -O cache/config.json  >/dev/null 2>/dev/null
 else
   echo -e "$SHARELIST_CONF" > cache/config.json
 fi
@@ -207,6 +207,7 @@ fi
 PATH=/usr/local/bin:$PATH
 PP=${PORT}
 export PORT=33001
+/usr/local/bin/npm install
 nohup /usr/local/bin/npm start &
 export PORT=${PP}
 echo ================= $PORT   finish sharelist =================================
