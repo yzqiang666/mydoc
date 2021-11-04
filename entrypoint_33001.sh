@@ -196,7 +196,7 @@ else
 fi
 
 
-cat cache/config.json
+#cat cache/config.json
 #npm install --production -g
 #npm config set registry https://registry.npm.taobao.org
 #npm install n -g
@@ -213,7 +213,7 @@ export PORT=33001
 #/usr/local/bin/npm install
 #/usr/local/bin/npm audit fix --force
 echo RRRRRRRRRRRRRRRRRR
-#/usr/local/bin/npm install
+npm install
 echo SSSSSSSSSSSS
 nohup npm start &
 export PORT=${PP}
