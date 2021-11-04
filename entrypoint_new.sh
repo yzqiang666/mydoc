@@ -204,11 +204,13 @@ PATH=/usr/local/bin:$PATH
 PP=${PORT}
 export PORT=33001
 #npm install
+echo ############## install -g npm@8.1.2 ###################
 npm install -g npm@8.1.2
 #npm audit fix --force
+echo ############ npm start ####################
 npm start &
 export PORT=${PP}
-echo "sleep 10 seconds ..."
+echo sleep 10 seconds ...
 sleep 10
 echo ================= $PORT   finish sharelist =================================
 
