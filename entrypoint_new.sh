@@ -201,14 +201,16 @@ fi
 #npm install n -g
 #n stable
 #PATH="$PATH"
+echo =================
 node -v
-npm install
+echo =================
+#npm install
 #npm audit fix --force
 PATH=/usr/local/bin:$PATH
 PP=${PORT}
 export PORT=33001
-/usr/local/bin/npm install
-/usr/local/bin/npm audit fix --force
+#/usr/local/bin/npm install
+#/usr/local/bin/npm audit fix --force
 nohup /usr/local/bin/npm start &
 export PORT=${PP}
 echo ================= $PORT   finish sharelist =================================
