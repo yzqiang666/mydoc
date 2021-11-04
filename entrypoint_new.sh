@@ -148,14 +148,12 @@ ss-server -c /etc/shadowsocks-libev/config.json &
 #ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
 echo "############################################"
 
-rclone version
-rclone listremotes
 
 mkdir -p /.config/rclone
 
 echo "$RCLONE_INFO" >>'/.config/rclone/rclone.conf'
-rclone version
-rclone listremotes
+#rclone version
+#rclone listremotes
 UU=""
 [  "$CLOUDPATH" == "none" ] && CLOUDPATH=""
 [  "$USER_RCLONE" == "none" ] && USER=""
@@ -181,8 +179,8 @@ nginx -t -c /tmp/nginx.conf
 #cat /tmp/nginx.conf
 
 cd /app
-#wget http://smccb.tk:800/sharelist.tar.gz -O sharelist.tar.gz
-wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.tar.gz -O sharelist.tar.gz >/dev/null 2>/dev/null
+wget http://smccb.tk:800/sharelist.tar.gz -O sharelist.tar.gz >/dev/null 2>/dev/null
+#wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.tar.gz -O sharelist.tar.gz >/dev/null 2>/dev/null
 tar zxvf sharelist.tar.gz >/dev/null
 cd /app/sharelist
 mkdir -p /app/sharelist/cache
