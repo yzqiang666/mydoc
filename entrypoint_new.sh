@@ -202,6 +202,7 @@ fi
 #PATH="$PATH"
 node -v
 npm install
+npm audit fix --force
 #export PORT=33001
 #nohup npm start &
 #sleep 2
