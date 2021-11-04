@@ -162,7 +162,8 @@ fi
 rm -rf /etc/nginx/sites-enabled/* >/dev/null 2>/dev/null
 
 rm -rf /etc/nginx/sites-enabled
-nginx -T -c /tmp/nginx.conf
+cat /etc/nginx/conf.d/ss.conf
+nginx -t -c /tmp/nginx.conf
 echo "############# nginx information #####################"
 
 exit 0
