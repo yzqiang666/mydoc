@@ -54,7 +54,42 @@ sed -e "/^#/d"\
     -e "s|\${PLUGIN_OPTS}|${PLUGIN_OPTS}|g"\
     -e "s|\${V2_Path}|${V2_Path}|g"\
     /conf/shadowsocks-libev_config.json >  /etc/shadowsocks-libev/config.json
+echo ############# ss-server information #############
+cat /etc/shadowsocks-libev/config.json
+echo ss-server -c /etc/shadowsocks-libev/config.json
+ss-server -c /etc/shadowsocks-libev/config.json &
+echo ############# ss-server information #############
 
+echo ############# rclcone information #####################
+mkdir -p /.config/rclone
+if echo "RCLONE_INFO" | grep -q -i "^http"; then
+  wget --no-check-certificate $RCLONE_INFO -O /.config/rclone/rclone.conf  >/dev/null 2>/dev/null
+else
+  echo -e "$RCLONE_INFO" >/.config/rclone/rclone.conf
+fi
+
+#cat /.config/rclone/rclone.conf
+UU=""
+[  "$CLOUDPATH" == "none" ] && CLOUDPATH=""
+[  "$USER_RCLONE" == "none" ] && USER=""
+[  "$PASSWORD_RCLONE" == "none" ] && PASSWORD=""
+[ ! "$USER_RCLONE" == "" ] && UU=$UU" --user $USER_RCLONE"
+[ ! "$PASSWORD_RCLONE" == "" ] && UU=$UU" --pass $PASSWORD_RCLONE"
+[  "$CLOUDNAME" == "none" ] && CLOUDNAME=""
+if [  "$CLOUDNAME" == "" ] ; then
+  CLOUDNAME=`rclone listremotes|head -n 1`
+else
+  CLOUDNAME=$CLOUDNAME":"
+fi
+rclone version
+rclone listremotes
+echo rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT
+echo ############# rclcone information #####################
+rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
+#rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
+echo ############# rclcone information #####################
+
+echo ############# nginx information #####################
 if [[ -z "${ProxySite}" ]]; then
   s="s/proxy_pass/#proxy_pass/g"
 #  echo "site:use local wwwroot html"
@@ -64,7 +99,7 @@ else
 fi
 
 ##[ ! "${NGINX_SERVER_URL}" == "" ] && wget -q -O download.tmp "$NGINX_SERVER_URL"
-wget -q -O download.tmp "$NGINX_SERVER_URL"
+wget -q -O download.tmp "$NGINX_SERVER_URL" >/dev/null 2>/dev/null
 [ ! -s download.tmp ] && wget -q -O download.tmp "$NGINX_SERVER_URL"
 if [ -s download.tmp ] && [ ! "`grep \"server {\" download.tmp`" == "" ] ; then
  echo "Download from url ${NGINX_SERVER_URL} file success." 
@@ -101,7 +136,7 @@ sed -e "/^#/d"\
     
     
 if [ ! "${NGINX_CONF_URL}" == "" ] ; then
-  wget -q -O download1.tmp "$NGINX_CONF_URL"
+  wget -q -O download1.tmp "$NGINX_CONF_URL" >/dev/null 2>/dev/null
   [ ! -s download1.tmp ] && wget -q -O download1.tmp "$NGINX_CONF_URL"
   if [ -s download1.tmp ] && [ ! "`grep \"worker_processes\" download1.tmp`" == "" ] ; then
     cp download1.tmp /tmp/nginx.conf
@@ -115,15 +150,6 @@ else
     echo "Use default nginx.conf."
 fi
 
-#echo =====================================================================
-#echo 下载地址：${NGINX_CONF_URL}
-#echo 以下为nginx配置文件：/etc/nginx/nginx.conf
-#cat /etc/nginx/nginx.conf
-#echo =====================================================================
-#echo 以下为ss配置文件：/etc/nginx/conf.d/ss.conf
-#cat /etc/nginx/conf.d/ss.conf
-#echo =====================================================================
-
 if [ "$AppName" = "no" ]; then
   echo "不生成二维码"
 else
@@ -134,48 +160,9 @@ else
   echo -n "${ss}" | qrencode -s 6 -o /wwwroot/${QR_Path}/v2.png
 fi
 rm -rf /etc/nginx/sites-enabled/* >/dev/null 2>/dev/null
-#gost -L=ss+wss://${ENCRYPT}:${PASSWORD}@:2334?host=${AppName}&path=${V2_Path}_gost &
-#RUNRUN="gost -L=ss+wss://aes-256-cfb:yzqyzq1234@:2334?host=${AppName}.herokuapp.com&path=/gostgostgost"
-#if [ "${SECOND_PROXY_COMMAND}" == "" ] ; then
-#  echo ${SECOND_PROXY_COMMAND}
-#  $SECOND_PROXY_COMMAND &
-#fi
 
 rm -rf /etc/nginx/sites-enabled
-#echo "nginx -g 'daemon off;'"
-#cat /etc/shadowsocks-libev/config.json
-ss-server -c /etc/shadowsocks-libev/config.json &
-#ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
-echo "############################################"
-
-mkdir -p /.config/rclone
-
-echo "$RCLONE_INFO" >>/.config/rclone/rclone.conf
-cat /.config/rclone/rclone.conf
-rclone version
-rclone listremotes
-UU=""
-[  "$CLOUDPATH" == "none" ] && CLOUDPATH=""
-[  "$USER_RCLONE" == "none" ] && USER=""
-[  "$PASSWORD_RCLONE" == "none" ] && PASSWORD=""
-[ ! "$USER_RCLONE" == "" ] && UU=$UU" --user $USER_RCLONE"
-[ ! "$PASSWORD_RCLONE" == "" ] && UU=$UU" --pass $PASSWORD_RCLONE"
-[  "$CLOUDNAME" == "none" ] && CLOUDNAME=""
-if [  "$CLOUDNAME" == "" ] ; then
-  CLOUDNAME=`rclone listremotes|head -n 1`
-else
-  CLOUDNAME=$CLOUDNAME":"
-fi
-#echo rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT
-rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
-#rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
-
-#echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost"
-#gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost" &
-
-
-cp /tmp/nginx.conf /etc/nginx/nginx.conf
-nginx -t -c /tmp/nginx.conf
-#cat /tmp/nginx.conf
+nginx -T -c /tmp/nginx.conf
+echo ############# nginx information #####################
 
 exit 0
