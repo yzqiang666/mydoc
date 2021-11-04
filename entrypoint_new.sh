@@ -62,13 +62,13 @@ echo "############# ss-server information #############"
 
 echo "############# rclcone information #####################"
 mkdir -p /.config/rclone
-if echo "RCLONE_INFO" | grep -q -i "^http"; then
+if echo "$RCLONE_INFO" | grep -q -i "^http"; then
   wget --no-check-certificate $RCLONE_INFO -O /.config/rclone/rclone.conf  >/dev/null 2>/dev/null
 else
   echo -e "$RCLONE_INFO" >/.config/rclone/rclone.conf
 fi
 
-#cat /.config/rclone/rclone.conf
+
 UU=""
 [  "$CLOUDPATH" == "none" ] && CLOUDPATH=""
 [  "$USER_RCLONE" == "none" ] && USER=""
@@ -84,7 +84,6 @@ fi
 rclone version
 rclone listremotes
 echo rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT
-echo ############# rclcone information #####################
 rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
 #rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
 echo "############# rclcone information #####################"
