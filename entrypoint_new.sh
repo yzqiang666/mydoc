@@ -143,7 +143,7 @@ rm -rf /etc/nginx/sites-enabled/* >/dev/null 2>/dev/null
 
 rm -rf /etc/nginx/sites-enabled
 #echo "nginx -g 'daemon off;'"
-cat /etc/shadowsocks-libev/config.json
+#cat /etc/shadowsocks-libev/config.json
 ss-server -c /etc/shadowsocks-libev/config.json &
 #ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
 echo "############################################"
@@ -168,15 +168,50 @@ if [  "$CLOUDNAME" == "" ] ; then
 else
   CLOUDNAME=$CLOUDNAME":"
 fi
-echo rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT
-rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
+#echo rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT
+#rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
 #rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
-
 
 #echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost"
 #gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost" &
 
+
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
-nginx -T -c /tmp/nginx.conf
+nginx -t -c /tmp/nginx.conf
 #cat /tmp/nginx.conf
+
+cd /app
+#wget http://smccb.tk:800/sharelist.tar.gz -O sharelist.tar.gz
+wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.tar.gz -O sharelist.tar.gz >/dev/null 2>/dev/null
+tar zxvf sharelist.tar.gz >/dev/null
+cd /app/sharelist
+mkdir -p /app/sharelist/cache
+    
+cd /app/sharelist
+if echo "$SHARELIST_CONF" | grep -q -i "^http"; then
+  wget --no-check-certificate $SHARELIST_CONF -O cache/config.json  >/dev/null 2>/dev/null
+else
+  echo -e "$SHARELIST_CONF" > cache/config.json
+fi
+
+
+#cat cache/config.json
+#npm install --production -g
+#npm config set registry https://registry.npm.taobao.org
+#npm install n -g
+#n stable
+#PATH="$PATH"
+#node -v
+#npm install
+#npm audit fix --force
+PATH=/usr/local/bin:$PATH
+PP=${PORT}
+export PORT=33001
+/usr/local/bin/npm install
+/usr/local/bin/npm audit fix --force
+nohup /usr/local/bin/npm start &
+export PORT=${PP}
+echo ================= $PORT   finish sharelist =================================
+
+
 exit 0
