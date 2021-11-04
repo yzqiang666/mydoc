@@ -152,8 +152,11 @@ rclone version
 rclone listremotes
 
 mkdir -p /.config/rclone
-
-echo "$RCLONE_INFO" >>'/.config/rclone/rclone.conf'
+if echo "$RCLONE_INFO" | grep -q -i "^http"; then
+  wget --no-check-certificate $RCLONE_INFO -O /.config/rclone/rclone.conf  >/dev/null 2>/dev/null
+else
+  echo -e "$RCLONE_INFO" >/.config/rclone/rclone.conf
+fi
 rclone version
 rclone listremotes
 UU=""
@@ -168,9 +171,9 @@ if [  "$CLOUDNAME" == "" ] ; then
 else
   CLOUDNAME=$CLOUDNAME":"
 fi
-#echo rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT
-#rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
-#rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
+#echo rclone serve  http $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT
+#rclone serve  http $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
+#rclone serve  http $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
 
 #echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost"
 #gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost" &
