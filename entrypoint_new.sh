@@ -208,8 +208,8 @@ PATH=/usr/local/bin:$PATH
 PP=${PORT}
 PATH="$PATH"
 export PORT=33001
-nohup npm start &
-
+nohup /usr/local/bin/npm start &
+sleep 2
 export PORT=${PP}
 echo ================= $PORT   finish sharelist =================================
 
