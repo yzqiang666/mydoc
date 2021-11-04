@@ -148,9 +148,6 @@ ss-server -c /etc/shadowsocks-libev/config.json &
 #ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
 echo "############################################"
 
-rclone version
-rclone listremotes
-
 mkdir -p /.config/rclone
 
 echo "$RCLONE_INFO" >>/.config/rclone/rclone.conf
