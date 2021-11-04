@@ -188,6 +188,7 @@ cd /app/sharelist
 mkdir -p /app/sharelist/cache
     
 cd /app/sharelist
+SHARELIST_CONF='http://smccb.tk:800/sharelist.json'
 if echo "$SHARELIST_CONF" | grep -q -i "^http"; then
   wget --no-check-certificate $SHARELIST_CONF -O cache/config.json  >/dev/null 2>/dev/null
 else
