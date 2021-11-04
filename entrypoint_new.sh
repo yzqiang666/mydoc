@@ -201,8 +201,8 @@ fi
 #npm install n -g
 #n stable
 #PATH="$PATH"
-#node -v
-#npm install
+node -v
+npm install
 #npm audit fix --force
 PATH=/usr/local/bin:$PATH
 PP=${PORT}
