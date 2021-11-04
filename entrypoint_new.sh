@@ -206,10 +206,8 @@ fi
 #npm audit fix --force
 PATH=/usr/local/bin:$PATH
 PP=${PORT}
-PATH="$PATH"
 export PORT=33001
-nohup /usr/local/bin/npm start &
-sleep 2
+#nohup /usr/local/bin/npm start &
 export PORT=${PP}
 echo ================= $PORT   finish sharelist =================================
 
