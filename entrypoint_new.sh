@@ -211,7 +211,9 @@ PP=${PORT}
 export PORT=33001
 #/usr/local/bin/npm install
 #/usr/local/bin/npm audit fix --force
-npm install
+echo RRRRRRRRRRRRRRRRRR
+/usr/local/bin/npm install
+echo SSSSSSSSSSSS
 nohup npm start &
 export PORT=${PP}
 echo ================= $PORT   finish sharelist =================================
