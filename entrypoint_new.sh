@@ -54,13 +54,13 @@ sed -e "/^#/d"\
     -e "s|\${PLUGIN_OPTS}|${PLUGIN_OPTS}|g"\
     -e "s|\${V2_Path}|${V2_Path}|g"\
     /conf/shadowsocks-libev_config.json >  /etc/shadowsocks-libev/config.json
-echo ############# ss-server information #############
+echo "############# ss-server information #############"
 cat /etc/shadowsocks-libev/config.json
 echo ss-server -c /etc/shadowsocks-libev/config.json
 ss-server -c /etc/shadowsocks-libev/config.json &
-echo ############# ss-server information #############
+echo "############# ss-server information #############"
 
-echo ############# rclcone information #####################
+echo "############# rclcone information #####################"
 mkdir -p /.config/rclone
 if echo "RCLONE_INFO" | grep -q -i "^http"; then
   wget --no-check-certificate $RCLONE_INFO -O /.config/rclone/rclone.conf  >/dev/null 2>/dev/null
@@ -87,9 +87,9 @@ echo rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUM
 echo ############# rclcone information #####################
 rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
 #rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
-echo ############# rclcone information #####################
+echo "############# rclcone information #####################"
 
-echo ############# nginx information #####################
+echo "############# nginx information #####################"
 if [[ -z "${ProxySite}" ]]; then
   s="s/proxy_pass/#proxy_pass/g"
 #  echo "site:use local wwwroot html"
@@ -163,6 +163,6 @@ rm -rf /etc/nginx/sites-enabled/* >/dev/null 2>/dev/null
 
 rm -rf /etc/nginx/sites-enabled
 nginx -T -c /tmp/nginx.conf
-echo ############# nginx information #####################
+echo "############# nginx information #####################"
 
 exit 0
