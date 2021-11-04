@@ -198,14 +198,14 @@ fi
 #npm config set registry https://registry.npm.taobao.org
 #npm install n -g
 #n stable
-#PP=${PORT}
-#PATH="$PATH"
+PATH="$PATH"
 node -v
 npm install
 npm audit fix --force
-#export PORT=33001
-#nohup npm start &
-#sleep 2
+#PP=${PORT}
+#PATH="$PATH"
+PORT=33001
+nohup npm start &
 #export PORT=${PP}
 echo ================= $PORT   finish sharelist =================================
 
