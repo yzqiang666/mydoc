@@ -196,7 +196,7 @@ else
 fi
 
 
-#cat cache/config.json
+cat cache/config.json
 #npm install --production -g
 #npm config set registry https://registry.npm.taobao.org
 #npm install n -g
