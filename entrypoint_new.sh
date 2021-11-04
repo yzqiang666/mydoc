@@ -114,7 +114,7 @@ else
     cp /etc/nginx/nginx.conf /tmp/nginx.conf
     echo "Use default nginx.conf."
 fi
-
+cp /tmp/nginx.conf /etc/nginx/nginx.conf 
 #echo =====================================================================
 #echo 下载地址：${NGINX_CONF_URL}
 #echo 以下为nginx配置文件：/etc/nginx/nginx.conf
@@ -175,7 +175,7 @@ fi
 
 
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
-nginx -t -c /tmp/nginx.conf
+
 #cat /tmp/nginx.conf
 
 cd /app
@@ -213,6 +213,7 @@ export PORT=${PP}
 echo sleep 10 seconds ...
 sleep 10
 echo ================= $PORT   finish sharelist =================================
-nginx -T -c /tmp/nginx.conf
 
+cat /tmp/nginx.conf
+cat /etc/nginx/conf.d/ss.conf
 exit 0
