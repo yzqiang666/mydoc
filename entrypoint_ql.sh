@@ -7,7 +7,7 @@ set -e
 
 echo -e "======================0. 下载static.zip ========================\n"
 cd /ql
-curl -kL -o static.zip https://raw.githubusercontent.com/yzqiang666/qinglong-heroku/main/static.zip
+curl -kL -o static.zip https://github.com/yzqiang666/qinglong-heroku/raw/master/static/static.zip
 unzip static.zip
 ls -l
 ls -l dist/*
