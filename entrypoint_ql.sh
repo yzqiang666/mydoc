@@ -13,7 +13,6 @@ unzip static.zip
 ls -l
 ls -l dist/*
 
-sed -i "s/5700/$PORT/g" /ql/start/front.conf
 cp -fv $nginx_conf /etc/nginx/nginx.conf
 cat /etc/nginx/nginx.conf
 cp -fv $nginx_app_conf /etc/nginx/conf.d/front.conf
