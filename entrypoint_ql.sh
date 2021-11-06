@@ -1,10 +1,5 @@
 #!/bin/bash
 
-dir_shell=/ql/shell
-. $dir_shell/share.sh
-link_shell
-set -e
-
 echo -e "======================0. 下载static.zip ========================\n"
 cd /ql
 curl -kL -o static.zip https://github.com/yzqiang666/qinglong-heroku/raw/master/static/static.zip
@@ -12,6 +7,12 @@ unzip static.zip
 ls -l
 ls -l dist/*
 echo
+
+
+dir_shell=/ql/shell
+. $dir_shell/share.sh
+link_shell
+set -e
 
 echo -e "======================1. 检测配置文件========================\n"
 cp -fv $nginx_conf /etc/nginx/nginx.conf
