@@ -1,12 +1,4 @@
-#!/bin/bash
-
-echo -e "======================0. 下载static.zip ========================\n"
-cd /ql
-curl -kL -o static.zip https://github.com/yzqiang666/qinglong-heroku/raw/master/static/static.zip
-unzip static.zip
-ls -l
-ls -l dist/*
-echo
+#!/bin/bas
 
 
 dir_shell=/ql/shell
@@ -15,6 +7,12 @@ link_shell
 set -e
 
 echo -e "======================1. 检测配置文件========================\n"
+cd /ql
+wget -O static.zip https://github.com/yzqiang666/qinglong-heroku/raw/master/static/static.zip
+unzip static.zip
+ls -l
+ls -l dist/*
+
 cp -fv $nginx_conf /etc/nginx/nginx.conf
 cat /etc/nginx/nginx.conf
 cp -fv $nginx_app_conf /etc/nginx/conf.d/front.conf
