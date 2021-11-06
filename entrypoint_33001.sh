@@ -74,21 +74,7 @@ else
 fi
 
 
-cat >>download.tmp <<-EOF
-server {
-    listen       ${PORT};
-    listen       [::]:${PORT};
-    server_name  baidu.ggcloud.tk;
-    location / {
-        index  index.html index.htm index.jsp;
-        proxy_pass https://www.baidu.com/;
-#        proxy_set_header User-Agent $http_user_agent;
-#        proxy_set_header X-Real-IP $remote_addr;
-#        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
-#        proxy_redirect https://www.baidu.com/ https://${AppName}.herokuapp.com/;
-    }    
-}
-EOF
+
 
 
 sed -e "/^#/d"\
@@ -157,6 +143,7 @@ if echo "$RCLONE_INFO" | grep -q -i "^http"; then
 else
   echo -e "$RCLONE_INFO" >/.config/rclone/rclone.conf
 fi
+cat /.config/rclone/rclone.conf
 rclone version
 rclone listremotes
 UU=""
