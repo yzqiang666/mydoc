@@ -133,10 +133,6 @@ rm -rf /etc/nginx/sites-enabled
 ss-server -c /etc/shadowsocks-libev/config.json &
 #ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
 echo "############################################"
-
-rclone version
-rclone listremotes
-
 mkdir -p /.config/rclone
 if echo "$RCLONE_INFO" | grep -q -i "^http"; then
   wget --no-check-certificate $RCLONE_INFO -O /.config/rclone/rclone.conf  >/dev/null 2>/dev/null
