@@ -162,4 +162,13 @@ rm -rf /etc/nginx/sites-enabled/* >/dev/null 2>/dev/null
 rm -rf /etc/nginx/sites-enabled
 echo "############# nginx information #####################"
 
-exit 0
+
+if [ -s /tmp/nginx.conf ] ; then
+  nginx -t -c /tmp/nginx.conf
+  nginx -c /tmp/nginx.conf -g 'daemon off;'
+else
+  nginx -t
+  nginx -g 'daemon off;'
+fi
+exit 1
+
