@@ -154,7 +154,7 @@ if [  "$CLOUDNAME" == "" ] ; then
 else
   CLOUDNAME=$CLOUDNAME":"
 fi
-#echo rclone serve  http $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT
+echo rclone serve  http $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT
 #rclone serve  http $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
 #rclone serve  http $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
 
