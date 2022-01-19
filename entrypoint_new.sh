@@ -84,7 +84,7 @@ fi
 rclone version
 rclone listremotes
 echo rclone serve  http $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT
-#rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
+rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
 #rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
 echo "############# rclcone information #####################"
 
