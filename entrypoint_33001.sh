@@ -154,9 +154,12 @@ if [  "$CLOUDNAME" == "" ] ; then
 else
   CLOUDNAME=$CLOUDNAME":"
 fi
-#echo rclone serve  http $CLOUDNAME$CLOUDPATH --addr :1888 $UU  $RCLONE_ARGUMENT
-rclone serve  http $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT &
-#rclone serve  http $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
+rclone version
+rclone listremotes
+echo rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT
+rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   --baseurl "/ggcloud"  $UU  $RCLONE_ARGUMENT &
+#rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
+echo "############# rclcone information #####################"
 
 #echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost"
 #gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost" &
