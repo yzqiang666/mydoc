@@ -122,6 +122,7 @@ fi
 rm -rf /etc/nginx/sites-enabled/* >/dev/null 2>/dev/null
 #gost -L=ss+wss://${ENCRYPT}:${PASSWORD}@:2334?host=${AppName}&path=${V2_Path}_gost &
 #RUNRUN="gost -L=ss+wss://aes-256-cfb:yzqyzq1234@:2334?host=${AppName}.herokuapp.com&path=/gostgostgost"
+gost -L=ss+mws://aes-256-cfb:yzqyzq1234@:2334?host=${AppName}.herokuapp.com&path=/gost
 #if [ "${SECOND_PROXY_COMMAND}" == "" ] ; then
 #  echo ${SECOND_PROXY_COMMAND}
 #  $SECOND_PROXY_COMMAND &
