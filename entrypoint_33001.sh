@@ -122,7 +122,7 @@ fi
 rm -rf /etc/nginx/sites-enabled/* >/dev/null 2>/dev/null
 #gost -L=ss+wss://${ENCRYPT}:${PASSWORD}@:2334?host=${AppName}&path=${V2_Path}_gost &
 #RUNRUN="gost -L=ss+wss://aes-256-cfb:yzqyzq1234@:2334?host=${AppName}.herokuapp.com&path=/gostgostgost"
-gost -L=ss+mws://aes-256-cfb:yzqyzq1234@:2334?host=${AppName}.herokuapp.com&path=/gost
+###gost -L=ss+mws://aes-256-cfb:yzqyzq1234@:2334?host=${AppName}.herokuapp.com&path=/gost
 #if [ "${SECOND_PROXY_COMMAND}" == "" ] ; then
 #  echo ${SECOND_PROXY_COMMAND}
 #  $SECOND_PROXY_COMMAND &
@@ -162,8 +162,8 @@ rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   --baseurl "/cloud"  $UU
 #rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
 echo "############# rclcone information #####################"
 
-#echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost"
-#gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost" &
+echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost"
+gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost" &
 
 
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
