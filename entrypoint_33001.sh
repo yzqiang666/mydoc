@@ -204,7 +204,7 @@ if [ -s /tmp/nginx.conf ] ; then
   nginx -t -c /tmp/nginx.conf
   nginx -c /tmp/nginx.conf -g 'daemon off;'
 else
-  nginx -t
+  nginx -T
   nginx -g 'daemon off;'
 fi
 exit 1
