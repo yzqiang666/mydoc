@@ -66,6 +66,9 @@ fi
 ##[ ! "${NGINX_SERVER_URL}" == "" ] && wget -q -O download.tmp "$NGINX_SERVER_URL"
 wget -q -O download.tmp "$NGINX_SERVER_URL"
 [ ! -s download.tmp ] && wget -q -O download.tmp "$NGINX_SERVER_URL"
+[ ! -s download.tmp ] && wget -q -O download.tmp "$NGINX_SERVER_URL"
+[ ! -s download.tmp ] && wget -q -O download.tmp "$NGINX_SERVER_URL"
+[ ! -s download.tmp ] && wget -q -O download.tmp "$NGINX_SERVER_URL"
 if [ -s download.tmp ] && [ ! "`grep \"server {\" download.tmp`" == "" ] ; then
  echo "Download from url ${NGINX_SERVER_URL} file success." 
 else
@@ -88,6 +91,8 @@ sed -e "/^#/d"\
     
 if [ ! "${NGINX_CONF_URL}" == "" ] ; then
   wget -q -O download1.tmp "$NGINX_CONF_URL"
+  [ ! -s download1.tmp ] && wget -q -O download1.tmp "$NGINX_CONF_URL"
+  [ ! -s download1.tmp ] && wget -q -O download1.tmp "$NGINX_CONF_URL"
   [ ! -s download1.tmp ] && wget -q -O download1.tmp "$NGINX_CONF_URL"
   if [ -s download1.tmp ] && [ ! "`grep \"worker_processes\" download1.tmp`" == "" ] ; then
     cp download1.tmp /tmp/nginx.conf
