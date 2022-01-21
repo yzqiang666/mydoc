@@ -140,9 +140,7 @@ if echo "$RCLONE_INFO" | grep -q -i "^http"; then
 else
   echo -e "$RCLONE_INFO" >/.config/rclone/rclone.conf
 fi
-cat /.config/rclone/rclone.conf
-rclone version
-rclone listremotes
+
 UU=""
 [  "$CLOUDPATH" == "none" ] && CLOUDPATH=""
 [  "$USER_RCLONE" == "none" ] && USER=""
@@ -166,9 +164,6 @@ echo "############# rclcone information #####################"
 #gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost" &
 
 
-cp /tmp/nginx.conf /etc/nginx/nginx.conf
-#nginx -t -c /tmp/nginx.conf
-#cat /tmp/nginx.conf
 
 cd /app
 #wget http://smccb.tk:800/sharelist.tar.gz -O sharelist.tar.gz
@@ -200,7 +195,7 @@ npm install
 nohup npm start >/dev/null 2>/dev/null &
 export PORT=${PP}
 echo ================= finish sharelist =================================
-
+cp /tmp/nginx.conf /etc/nginx/nginx.conf
 if [ -s /tmp/nginx.conf ] ; then
   cat /tmp/nginx.conf
   nginx -t -c /tmp/nginx.conf
