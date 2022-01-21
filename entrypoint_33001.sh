@@ -167,7 +167,7 @@ echo "############# rclcone information #####################"
 
 
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
-nginx -t -c /tmp/nginx.conf
+#nginx -t -c /tmp/nginx.conf
 #cat /tmp/nginx.conf
 
 cd /app
@@ -203,7 +203,7 @@ echo ================= finish sharelist =================================
 
 if [ -s /tmp/nginx.conf ] ; then
   cat /tmp/nginx.conf
-  nginx -T -c /tmp/nginx.conf
+  nginx -t -c /tmp/nginx.conf
   nginx -c /tmp/nginx.conf -g 'daemon off;'
 else
   nginx -T
