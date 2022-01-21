@@ -63,7 +63,6 @@ else
 #  echo "site: ${ProxySite}"
 fi
 
-if [ "${NGINX_SERVER_URL:0:4}" == "http" ] ; then
 wget -q -O download.tmp "$NGINX_SERVER_URL"
 [ ! -s download.tmp ] && wget -q -O download.tmp "$NGINX_SERVER_URL"
 [ ! -s download.tmp ] && wget -q -O download.tmp "$NGINX_SERVER_URL"
@@ -75,13 +74,6 @@ else
   cp /conf/nginx_ss.conf ownload.tmp
   echo "Use default ss.conf."
 fi
-else
-echo ${NGINX_SERVER_URL} >download.tmp
-fi
-
-
-
-
 
 sed -e "/^#/d"\
     -e "s/\${AppName}/${AppName}/g"\
@@ -90,8 +82,7 @@ sed -e "/^#/d"\
     -e "s|\${QR_Path}|${QR_Path}|g"\
     -e "$s"\
     download.tmp > /etc/nginx/conf.d/ss.conf
-    
-if [ "${NGINX_CONF_URL:0:4}" == "http" ] ; then    
+     
 if [ ! "${NGINX_CONF_URL}" == "" ] ; then
   wget -q -O download1.tmp "$NGINX_CONF_URL"
   [ ! -s download1.tmp ] && wget -q -O download1.tmp "$NGINX_CONF_URL"
@@ -107,9 +98,6 @@ if [ ! "${NGINX_CONF_URL}" == "" ] ; then
 else
     cp /etc/nginx/nginx.conf /tmp/nginx.conf
     echo "Use default nginx.conf."
-fi
-else
-echo ${NGINX_SERVER_URL} >/tmp/nginx.conf
 fi
 
 #echo =====================================================================
