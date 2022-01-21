@@ -199,11 +199,11 @@ export PORT=${PP}
 echo ================= finish sharelist =================================
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
 if [ -s /tmp/nginx.conf ] ; then
-  cat /tmp/nginx.conf
+  cat /etc/nginx/conf.d/ss.conf
   nginx -t -c /tmp/nginx.conf
   nginx -c /tmp/nginx.conf -g 'daemon off;'
 else
-  nginx -T
+  nginx -t
   nginx -g 'daemon off;'
 fi
 exit 1
