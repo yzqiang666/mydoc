@@ -64,10 +64,6 @@ else
 fi
 
 wget -q -O download.tmp "$NGINX_SERVER_URL"
-[ ! -s download.tmp ] && wget -q -O download.tmp "$NGINX_SERVER_URL"
-[ ! -s download.tmp ] && wget -q -O download.tmp "$NGINX_SERVER_URL"
-[ ! -s download.tmp ] && wget -q -O download.tmp "$NGINX_SERVER_URL"
-[ ! -s download.tmp ] && wget -q -O download.tmp "$NGINX_SERVER_URL"
 if [ -s download.tmp ] && [ ! "`grep \"server {\" download.tmp`" == "" ] ; then
  echo "Download from url ${NGINX_SERVER_URL} file success." 
 else
@@ -83,12 +79,8 @@ sed -e "/^#/d"\
     -e "$s"\
     download.tmp > /etc/nginx/conf.d/ss.conf
      
-echo @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@NGINX_CONF_URL=${NGINX_CONF_URL}
 if [ ! "${NGINX_CONF_URL}" == "" ] ; then
   wget -q -O download1.tmp "$NGINX_CONF_URL"
-  [ ! -s download1.tmp ] && wget -q -O download1.tmp "$NGINX_CONF_URL"
-  [ ! -s download1.tmp ] && wget -q -O download1.tmp "$NGINX_CONF_URL"
-  [ ! -s download1.tmp ] && wget -q -O download1.tmp "$NGINX_CONF_URL"
   if [ -s download1.tmp ] && [ ! "`grep \"worker_processes\" download1.tmp`" == "" ] ; then
     cp download1.tmp /tmp/nginx.conf
     echo "Download from url ${NGINX_CONF_URL} file success." 
@@ -166,14 +158,13 @@ echo "############# rclcone information #####################"
 
 
 cd /app
-#wget http://smccb.tk:800/sharelist.tar.gz -O sharelist.tar.gz
 wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.tar.gz -O sharelist.tar.gz >/dev/null 2>/dev/null
 tar zxvf sharelist.tar.gz >/dev/null
 cd /app/sharelist
 mkdir -p /app/sharelist/cache
     
 cd /app/sharelist
-SHARELIST_CONF='http://smccb.tk:800/sharelist.json'
+if [ "${SHARELIST_CONF}" == "" ] && SHARELIST_CONF='http://smccb.tk:800/sharelist.json'
 if echo "$SHARELIST_CONF" | grep -q -i "^http"; then
   wget --no-check-certificate $SHARELIST_CONF -O cache/config.json  >/dev/null 2>/dev/null
 else
