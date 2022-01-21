@@ -83,6 +83,7 @@ sed -e "/^#/d"\
     -e "$s"\
     download.tmp > /etc/nginx/conf.d/ss.conf
      
+echo @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@NGINX_CONF_URL=${NGINX_CONF_URL}
 if [ ! "${NGINX_CONF_URL}" == "" ] ; then
   wget -q -O download1.tmp "$NGINX_CONF_URL"
   [ ! -s download1.tmp ] && wget -q -O download1.tmp "$NGINX_CONF_URL"
