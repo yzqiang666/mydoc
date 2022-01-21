@@ -201,7 +201,7 @@ export PORT=${PP}
 echo ================= finish sharelist =================================
 
 if [ -s /tmp/nginx.conf ] ; then
-  nginx -t -c /tmp/nginx.conf
+  nginx -T -c /tmp/nginx.conf
   nginx -c /tmp/nginx.conf -g 'daemon off;'
 else
   nginx -T
