@@ -158,8 +158,10 @@ echo "############# rclcone information #####################"
 
 
 cd /app
-wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.tar.gz -O sharelist.tar.gz >/dev/null 2>/dev/null
-tar zxvf sharelist.tar.gz >/dev/null
+#wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.tar.gz -O sharelist.tar.gz >/dev/null 2>/dev/null
+#tar zxvf sharelist.tar.gz >/dev/null
+wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.zip -O sharelist.zip >/dev/null 2>/dev/null
+unzip sharelist.zip
 cd /app/sharelist
 mkdir -p /app/sharelist/cache
     
