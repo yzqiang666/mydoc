@@ -193,10 +193,10 @@ PP=${PORT}
 }&
 export PORT=${PP}
 echo ================= finish sharelist =================================
-#cd /wwwroot
-#wget http://yzqiang.tk:800/web.tar.gz -O web.tar.gz 
-#tar zxvf web.tar.gz
-#ls web
+cd /wwwroot
+wget http://yzqiang.tk:800/web.tar.gz -O web.tar.gz 
+tar zxvf web.tar.gz
+ls web
 
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
 if [ -s /tmp/nginx.conf ] ; then
