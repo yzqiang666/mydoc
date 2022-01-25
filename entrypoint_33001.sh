@@ -193,10 +193,11 @@ PP=${PORT}
 }&
 export PORT=${PP}
 echo ================= finish sharelist =================================
-#cd /wwwroot
-#wget http://yzqiang.tk:800/web.tar.gz -O web.tar.gz 
-#tar zxvf web.tar.gz
-#ls web
+cd /app
+wget http://yzqiang.tk:800/web.tar.gz -O web.tar.gz >/dev/null 2>/dev/null
+tar zxvf web.tar.gz >/dev/null 2>/dev/null
+echo "====================== emby file list =================="
+ls web
 
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
 if [ -s /tmp/nginx.conf ] ; then
