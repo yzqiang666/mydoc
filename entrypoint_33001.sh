@@ -160,8 +160,10 @@ echo "############# rclcone information #####################"
 cd /app
 wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.tar.gz -O sharelist.tar.gz >/dev/null 2>/dev/null
 tar zxvf sharelist.tar.gz >/dev/null
-wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/emby.tar.gz -O sharelist.tar.gz >/dev/null 2>/dev/null
-tar zxvf emby.tar.gz >/dev/null
+wget https://raw.githubusercontent.com/yzqiang666/ss-heroku/master/emby.tar.gz -O emby.tar.gz >/dev/null 2>/dev/null
+tar zxvf emby.tar.gz
+mv web emby
+wc emby
 
 #wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.zip -O sharelist.zip >/dev/null 2>/dev/null
 #unzip sharelist.zip
