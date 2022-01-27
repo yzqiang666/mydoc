@@ -161,7 +161,7 @@ cd /app
 wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.tar.gz -O sharelist.tar.gz >/dev/null 2>/dev/null
 tar zxvf sharelist.tar.gz >/dev/null
 wget https://raw.githubusercontent.com/yzqiang666/ss-heroku/master/emby.tar.gz -O emby.tar.gz >/dev/null 2>/dev/null
-tar zxvf emby.tar.gz
+tar zxvf emby.tar.gz  >/dev/null 2>/dev/null
 mv web emby
 wc emby
 
@@ -199,10 +199,10 @@ PP=${PORT}
 export PORT=${PP}
 echo ================= finish sharelist =================================
 cd /app
-wget http://yzqiang.tk:800/web.tar.gz -O web.tar.gz >/dev/null 2>/dev/null
-tar zxvf web.tar.gz >/dev/null 2>/dev/null
-echo "====================== emby file list =================="
-ls web
+#wget http://yzqiang.tk:800/web.tar.gz -O web.tar.gz >/dev/null 2>/dev/null
+#tar zxvf web.tar.gz >/dev/null 2>/dev/null
+#echo "====================== emby file list =================="
+#ls web
 
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
 if [ -s /tmp/nginx.conf ] ; then
