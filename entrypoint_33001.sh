@@ -161,8 +161,8 @@ cd /app
 wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.tar.gz -O sharelist.tar.gz >/dev/null 2>/dev/null
 tar zxvf sharelist.tar.gz >/dev/null
 echo "wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/emby.tar.gz -O emby.tar.gz"
-wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/emby.tar.gz -O emby.tar.gz
-tar zxvf emby.tar.gz
+wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/emby.tar.gz -O emby.tar.gz  >/dev/null 2>/dev/null
+tar zxvf emby.tar.gz  >/dev/null
 
 echo "########### list for emby ####################"
 wc web
