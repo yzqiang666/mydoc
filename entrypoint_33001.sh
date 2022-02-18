@@ -158,10 +158,10 @@ echo "############# rclcone information #####################"
 
 {
 cd /app
-wget https://ghproxy.com/https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.tar.gz -O sharelist.tar.gz >/dev/null 2>/dev/null
+wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.tar.gz -O sharelist.tar.gz >/dev/null 2>/dev/null
 tar zxvf sharelist.tar.gz >/dev/null
-echo "wget https://ghproxy.com/https://raw.githubusercontent.com/yzqiang666/mydoc/main/emby.tar.gz -O emby.tar.gz"
-wget https://ghproxy.com/https://raw.githubusercontent.com/yzqiang666/mydoc/main/emby.tar.gz -O emby.tar.gz
+echo "wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/emby.tar.gz -O emby.tar.gz"
+wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/emby.tar.gz -O emby.tar.gz
 tar zxvf emby.tar.gz
 
 echo "########### list for emby ####################"
