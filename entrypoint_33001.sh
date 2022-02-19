@@ -1,6 +1,7 @@
 #!/bin/bash
 ###  第一行的内容必不可少
 
+PP=${PORT}
 
 #v2ray-plugin版本
 if [[ -z "${VER}" ]]; then
@@ -164,11 +165,11 @@ echo "wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/emby.tar.gz -
 wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/emby.tar.gz -O emby.tar.gz  >/dev/null 2>/dev/null
 tar zxvf emby.tar.gz  >/dev/null
 
-echo "########### list for emby ####################"
-wc web
-ls -l web
-echo "########### list for emby ####################"
-}&
+#echo "########### list for emby ####################"
+#wc web
+#ls -l web
+#echo "########### list for emby ####################"
+
 #wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.zip -O sharelist.zip >/dev/null 2>/dev/null
 #unzip sharelist.zip
 cd /app/sharelist
@@ -194,7 +195,7 @@ PP=${PORT}
 
 #/usr/local/bin/npm install
 #/usr/local/bin/npm audit fix --force
-{
+
   npm install 
   export PORT=33001
   nohup npm start >/dev/null 2>/dev/null
