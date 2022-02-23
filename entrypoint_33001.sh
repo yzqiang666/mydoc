@@ -155,8 +155,8 @@ echo "############# rclcone information #####################"
 
 
 echo "############# GOST information #####################"
-echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334"
-gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334" &
+echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334&path=/ws"
+gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334&path=/ws" &
 echo "############# GOST information #####################"
 
 
