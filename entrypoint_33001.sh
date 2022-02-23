@@ -153,8 +153,11 @@ rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   --baseurl "/cloud"  $UU
 #rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
 echo "############# rclcone information #####################"
 
-#echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost"
-#gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?host=${AppName}.herokuapp.com&path=/gost" &
+
+echo "############# GOST information #####################"
+echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334"
+gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334" &
+echo "############# GOST information #####################"
 
 
 {
