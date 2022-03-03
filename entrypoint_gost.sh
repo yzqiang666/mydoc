@@ -7,8 +7,6 @@ PP=${PORT}
 if [[ -z "${VER}" ]]; then
   VER="latest"
 fi
-
-
 if [[ -z "${PASSWORD}" ]]; then
   PASSWORD="5c301bb8-6c77-41a0-a606-4ba11bbab084"
 fi
