@@ -103,8 +103,8 @@ fi
 
 rm -rf /etc/nginx/sites-enabled/* >/dev/null 2>/dev/null
 
-echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:${PORT}?path=/ws"
-gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:${PORT}?path=/ws" &
+echo gost  -L=ss+mws://$ENCRYPT:$PASSWORD@:$PORT
+gost  -L=ss+mws://$ENCRYPT:$PASSWORD@:$PORT &
 echo "############# GOST information #####################"
 
 
