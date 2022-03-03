@@ -103,8 +103,8 @@ fi
 
 rm -rf /etc/nginx/sites-enabled/* >/dev/null 2>/dev/null
 
-echo gost  -L="ss+mwss://$ENCRYPT:$PASSWORD@:2334"
-gost  -L="ss+mwss://$ENCRYPT:$PASSWORD@:2334" &
+echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?path=/ws"
+gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?path=/ws" &
 echo "############# GOST information #####################"
 
 
