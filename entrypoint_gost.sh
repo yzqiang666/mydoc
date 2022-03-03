@@ -103,8 +103,8 @@ fi
 
 rm -rf /etc/nginx/sites-enabled/* >/dev/null 2>/dev/null
 
-echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?path=/ws"
-gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334?path=/ws" &
+echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:${PORT}?path=/ws"
+gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:${PORT}?path=/ws" &
 echo "############# GOST information #####################"
 
 
@@ -113,9 +113,9 @@ cp /tmp/nginx.conf /etc/nginx/nginx.conf
 if [ -s /tmp/nginx.conf ] ; then
   cat /etc/nginx/conf.d/ss.conf
   nginx -t -c /tmp/nginx.conf
-  nginx -c /tmp/nginx.conf -g 'daemon off;'
+#  nginx -c /tmp/nginx.conf -g 'daemon off;'
 else
   nginx -t
-  nginx -g 'daemon off;'
+#  nginx -g 'daemon off;'
 fi
 exit 1
