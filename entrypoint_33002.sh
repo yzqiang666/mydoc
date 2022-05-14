@@ -113,104 +113,11 @@ else
   echo -n "${ss}" | qrencode -s 6 -o /wwwroot/${QR_Path}/v2.png
 fi
 rm -rf /etc/nginx/sites-enabled/* >/dev/null 2>/dev/null
-#gost -L=ss+wss://${ENCRYPT}:${PASSWORD}@:2334?host=${AppName}&path=${V2_Path}_gost &
-#RUNRUN="gost -L=ss+wss://aes-256-cfb:yzqyzq1234@:2334?host=${AppName}.herokuapp.com&path=/gostgostgost"
-###gost -L=ss+mws://aes-256-cfb:yzqyzq1234@:2334?host=${AppName}.herokuapp.com&path=/gost
-#if [ "${SECOND_PROXY_COMMAND}" == "" ] ; then
-#  echo ${SECOND_PROXY_COMMAND}
-#  $SECOND_PROXY_COMMAND &
-#fi
 
 rm -rf /etc/nginx/sites-enabled
-#echo "nginx -g 'daemon off;'"
-#cat /etc/shadowsocks-libev/config.json
 ss-server -c /etc/shadowsocks-libev/config.json &
-#ss-server -c /etc/shadowsocks-libev/config.json --plugin ${PLUGIN} --plugin-opts ${PLUGIN_OPTS} &
-echo "############################################"
-mkdir -p /.config/rclone
-if echo "$RCLONE_INFO" | grep -q -i "^http"; then
-  wget --no-check-certificate $RCLONE_INFO -O /.config/rclone/rclone.conf  >/dev/null 2>/dev/null
-else
-  echo -e "$RCLONE_INFO" >/.config/rclone/rclone.conf
-fi
-
-UU=""
-[  "$CLOUDPATH" == "none" ] && CLOUDPATH=""
-[  "$USER_RCLONE" == "none" ] && USER=""
-[  "$PASSWORD_RCLONE" == "none" ] && PASSWORD=""
-[ ! "$USER_RCLONE" == "" ] && UU=$UU" --user $USER_RCLONE"
-[ ! "$PASSWORD_RCLONE" == "" ] && UU=$UU" --pass $PASSWORD_RCLONE"
-[  "$CLOUDNAME" == "none" ] && CLOUDNAME=""
-if [  "$CLOUDNAME" == "" ] ; then
-  CLOUDNAME=`rclone listremotes|head -n 1`
-else
-  CLOUDNAME=$CLOUDNAME":"
-fi
-rclone version
-rclone listremotes
-echo rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   $UU  $RCLONE_ARGUMENT
-rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888   --baseurl "/cloud"  $UU  $RCLONE_ARGUMENT &
-#rclone serve  webdav $CLOUDNAME$CLOUDPATH --addr :1888  --baseurl "/pan" $UU  $RCLONE_ARGUMENT &
-echo "############# rclcone information #####################"
 
 
-#echo "############# GOST information #####################"
-#echo gost  -L="ss+mws://$ENCRYPT:$PASSWORD@:2334&path=/ws"
-#gost  -L="ss+mwss://$ENCRYPT:$PASSWORD@:2334 &
-#echo "############# GOST information #####################"
-
-
-{
-cd /app
-wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.tar.gz -O sharelist.tar.gz >/dev/null 2>/dev/null
-tar zxvf sharelist.tar.gz >/dev/null
-echo "wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/emby.tar.gz -O emby.tar.gz"
-wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/emby.tar.gz -O emby.tar.gz  >/dev/null 2>/dev/null
-tar zxvf emby.tar.gz  >/dev/null
-
-#echo "########### list for emby ####################"
-#wc web
-#ls -l web
-#echo "########### list for emby ####################"
-
-#wget https://raw.githubusercontent.com/yzqiang666/mydoc/main/sharelist.zip -O sharelist.zip >/dev/null 2>/dev/null
-#unzip sharelist.zip
-cd /app/sharelist
-mkdir -p /app/sharelist/cache
-    
-cd /app/sharelist
-[ "${SHARELIST_CONF}" == "" ] && SHARELIST_CONF='http://smccb.tk:800/sharelist.json'
-if echo "$SHARELIST_CONF" | grep -q -i "^http"; then
-  wget --no-check-certificate $SHARELIST_CONF -O cache/config.json  >/dev/null 2>/dev/null
-else
-  echo -e "$SHARELIST_CONF" > cache/config.json
-fi
-
-SHARELIST_CONF='http://smccb.tk:800/sharelist.json'
-wget --no-check-certificate $SHARELIST_CONF -O cache/config.json  >/dev/null 2>/dev/null
-
-echo =================
-node -v
-echo =================
-
-PATH=/usr/local/bin:$PATH
-PP=${PORT}
-
-#/usr/local/bin/npm install
-#/usr/local/bin/npm audit fix --force
-
-  npm install 
-  export PORT=33001
-  nohup npm start >/dev/null 2>/dev/null
-  export PORT=${PP}
-}&
-export PORT=${PP}
-echo ================= finish sharelist =================================
-cd /app
-#wget http://yzqiang.tk:800/web.tar.gz -O web.tar.gz >/dev/null 2>/dev/null
-#tar zxvf web.tar.gz >/dev/null 2>/dev/null
-#echo "====================== emby file list =================="
-#ls web
 
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
 if [ -s /tmp/nginx.conf ] ; then
