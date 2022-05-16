@@ -12,11 +12,9 @@
 ##VAR|proxy_count=20
 ##VAR|check_ping=1
 ##VAR|setpac=0
-###VAR|serverurl="ftp://epiz_28896527:yzqyzq123@ftpupload.net/htdocs/"
-###VAR|serverurl1="ftp://epiz_29065721:yzqyzq12345@ftpupload.net/htdocs/"
-##VAR|serverurl="ftp://epiz_30158454:yzqyzq12@ftpupload.net/htdocs/"
-##VAR|serverurl1="ftp://epiz_30158454:yzqyzq12@ftpupload.net/htdocs/mac/"
-##VAR|serverurl2="http://127.0.0.1/"
+###VAR|serverurl="ftp://epiz_30158454:yzqyzq12@ftpupload.net/htdocs/"
+###VAR|serverurl1="ftp://epiz_30158454:yzqyzq12@ftpupload.net/htdocs/mac/"
+##VAR|serverurl="http://127.0.0.1/"
 ##COOKIE_upload='__test=cd64e93416c997c7a55598c4931d4357'
 
 ##sub|https://raw.fastgit.org/freefq/free/master/ssr
@@ -57,12 +55,12 @@
 #https://ext-fr1.cn-cloudflare.com:443
 #https://ext-pl1.cn-cloudflare.com:443
 #https://ext-au1.cn-cloudflare.com:443
-https://node.de.gododdy.xyz:443
-https://jap-1.gododdy.xyz:443
-https://jap-2.gododdy.xyz:443
-https://sg-2.gododdy.xyz:443
-https://sg-3.gododdy.xyz:443
-https://sg-1.gododdy.xyz:443
+#https://node.de.gododdy.xyz:443
+#https://jap-1.gododdy.xyz:443
+#https://jap-2.gododdy.xyz:443
+#https://sg-2.gododdy.xyz:443
+#https://sg-3.gododdy.xyz:443
+#https://sg-1.gododdy.xyz:443
 #sub|https://raw.githubusercontent.com/back8/github_pojiezhiyuanjun_freev2/master/20201228.yml
 #sub|https://raw.githubusercontent.com/back8/github_pojiezhiyuanjun_freev2/master/1228.txt
 #sub|https://muma16fx.netlify.app
