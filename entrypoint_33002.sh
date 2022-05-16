@@ -120,8 +120,8 @@ ss-server -c /etc/shadowsocks-libev/config.json &
 
 
 cp /tmp/nginx.conf /etc/nginx/nginx.conf
-cat /etc/nginx/nginx.conf
-cat /etc/nginx/conf.d/ss.conf
+#cat /etc/nginx/nginx.conf
+#cat /etc/nginx/conf.d/ss.conf
 if [ -s /tmp/nginx.conf ] ; then
   cat /etc/nginx/conf.d/ss.conf
   nginx -t -c /tmp/nginx.conf
