@@ -20,7 +20,7 @@
 ##sub|https://raw.fastgit.org/freefq/free/master/ssr
 ###sub|https://ghproxy.com/https://raw.githubusercontent.com/ssrsub/ssr/master/ss-sub
 #sub|https://sub.qaq.wtf
-###clash|https://sspool.herokuapp.com/clash/proxies?type=ss&speed=30
+clash|https://sspool.herokuapp.com/clash/proxies?type=ss
 #clash|https://1rmb.tk/clash/proxies?type=ss
 ###sub|https://ghproxy.com/https://raw.githubusercontent.com/learnhard-cn/free_proxy_ss/main/ss/sssub
 ###sub|https://ghproxy.com/https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/[%m%d].txt
